@@ -78,7 +78,7 @@ export const metadata: Metadata = {
     canonical: "https://sabtools.in",
   },
   verification: {
-    google: "YOUR_GOOGLE_VERIFICATION_CODE",
+    google: "GqkwjowsFohBgklNGrXwF-wwuRrsS059u5FHdi46eZA",
   },
   other: {
     "rating": "general",
