@@ -131,6 +131,7 @@ const toolComponents: Record<string, AnyComponent> = {
   "business-card-maker": dynamic(() => import("./BusinessCardMaker")),
   "pixel-art-maker": dynamic(() => import("./PixelArtMaker")),
   "image-border-adder": dynamic(() => import("./ImageBorderAdder")),
+  "image-format-converter": dynamic(() => import("./ImageFormatConverter")),
 
   // SEO Tools (8)
   "meta-tag-generator": dynamic(() => import("./MetaTagGenerator")),

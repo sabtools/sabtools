@@ -173,6 +173,7 @@ export const tools: Tool[] = [
   { name: "Business Card Maker", slug: "business-card-maker", description: "Design business cards with Minimal, Dark, Corporate and Gradient styles at 300 DPI print quality", category: "image", icon: "💼", keywords: ["business card", "visiting card", "card maker", "professional", "print", "contact card"] },
   { name: "Pixel Art Maker", slug: "pixel-art-maker", description: "Convert photos to pixel art with adjustable block size and color palette reduction", category: "image", icon: "👾", keywords: ["pixel art", "pixelate", "8-bit", "retro", "mosaic", "block art", "low poly"] },
   { name: "Image Border Adder", slug: "image-border-adder", description: "Add borders to images with Solid, Gradient, Double Line, Rounded and Shadow styles", category: "image", icon: "🖼️", keywords: ["border", "frame", "image border", "solid border", "gradient border", "rounded", "shadow"] },
+  { name: "Image Format Converter", slug: "image-format-converter", description: "Convert images between PNG, JPG, WebP, BMP, GIF, ICO, TIFF, AVIF formats with quality control", category: "image", icon: "🔄", keywords: ["image converter", "format converter", "png to jpg", "jpg to png", "webp to jpg", "heic to jpg", "convert image", "image format"] },
 
   // SEO Tools
   { name: "Meta Tag Generator", slug: "meta-tag-generator", description: "Generate SEO-friendly meta tags for your website", category: "seo", icon: "🏷️", keywords: ["meta tags", "seo", "title", "description", "og tags"] },
