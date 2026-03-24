@@ -49,13 +49,15 @@ const STATE_PIN_RANGES: { state: string; range: string }[] = [
 
 export default function IndianPinCodeDirectory() {
   const [pinCode, setPinCode] = useState("");
+  const [areaName, setAreaName] = useState("");
+  const [searchMode, setSearchMode] = useState<"pin" | "area">("pin");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [results, setResults] = useState<PostOffice[] | null>(null);
   const [searched, setSearched] = useState(false);
   const [searchState, setSearchState] = useState("");
 
-  const search = useCallback(async () => {
+  const searchByPin = useCallback(async () => {
     const clean = pinCode.replace(/\D/g, "");
     if (clean.length !== 6) {
       setError("Please enter a valid 6-digit PIN code");
@@ -82,25 +84,82 @@ export default function IndianPinCodeDirectory() {
     }
   }, [pinCode]);
 
+  const searchByArea = useCallback(async () => {
+    if (areaName.trim().length < 3) {
+      setError("Please enter at least 3 characters of the area/post office name");
+      return;
+    }
+    setLoading(true);
+    setError("");
+    setResults(null);
+    setSearched(true);
+
+    try {
+      const res = await fetch(`https://api.postalpincode.in/postoffice/${encodeURIComponent(areaName.trim())}`);
+      const data: ApiResponse[] = await res.json();
+
+      if (data[0]?.Status === "Success" && data[0]?.PostOffice) {
+        setResults(data[0].PostOffice);
+      } else {
+        setError("No post offices found for this area name. Try a different spelling or nearby area.");
+      }
+    } catch {
+      setError("Unable to fetch data. Please check your internet connection and try again.");
+    } finally {
+      setLoading(false);
+    }
+  }, [areaName]);
+
+  const search = searchMode === "pin" ? searchByPin : searchByArea;
+
   const filteredStates = searchState
     ? STATE_PIN_RANGES.filter((s) => s.state.toLowerCase().includes(searchState.toLowerCase()))
     : STATE_PIN_RANGES;
 
   return (
     <div className="space-y-6">
-      {/* Search */}
+      {/* Search Mode Toggle */}
+      <div className="flex gap-2 bg-gray-100 p-1 rounded-xl w-fit">
+        <button
+          className={`px-5 py-2.5 rounded-lg text-sm font-semibold transition ${searchMode === "pin" ? "bg-white text-purple-700 shadow-sm" : "text-gray-500 hover:text-gray-700"}`}
+          onClick={() => { setSearchMode("pin"); setResults(null); setError(""); setSearched(false); }}
+        >
+          🔢 Search by PIN Code
+        </button>
+        <button
+          className={`px-5 py-2.5 rounded-lg text-sm font-semibold transition ${searchMode === "area" ? "bg-white text-purple-700 shadow-sm" : "text-gray-500 hover:text-gray-700"}`}
+          onClick={() => { setSearchMode("area"); setResults(null); setError(""); setSearched(false); }}
+        >
+          📍 Search by Area Name
+        </button>
+      </div>
+
+      {/* Search Input */}
       <div>
-        <label className="text-sm font-semibold text-gray-700 block mb-1">Enter 6-Digit PIN Code</label>
+        <label className="text-sm font-semibold text-gray-700 block mb-1">
+          {searchMode === "pin" ? "Enter 6-Digit PIN Code" : "Enter Area / Post Office / City Name"}
+        </label>
         <div className="flex gap-3">
-          <input
-            className="calc-input flex-1"
-            type="text"
-            maxLength={6}
-            placeholder="e.g. 110001"
-            value={pinCode}
-            onChange={(e) => setPinCode(e.target.value.replace(/\D/g, ""))}
-            onKeyDown={(e) => e.key === "Enter" && search()}
-          />
+          {searchMode === "pin" ? (
+            <input
+              className="calc-input flex-1"
+              type="text"
+              maxLength={6}
+              placeholder="e.g. 110001"
+              value={pinCode}
+              onChange={(e) => setPinCode(e.target.value.replace(/\D/g, ""))}
+              onKeyDown={(e) => e.key === "Enter" && search()}
+            />
+          ) : (
+            <input
+              className="calc-input flex-1"
+              type="text"
+              placeholder="e.g. Andheri, Connaught Place, Koramangala"
+              value={areaName}
+              onChange={(e) => setAreaName(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && search()}
+            />
+          )}
           <button className="btn-primary px-8" onClick={search} disabled={loading}>
             {loading ? (
               <span className="flex items-center gap-2">
@@ -113,6 +172,9 @@ export default function IndianPinCodeDirectory() {
             ) : "Search"}
           </button>
         </div>
+        {searchMode === "area" && (
+          <p className="text-xs text-gray-400 mt-1">Type area name, locality, village, or post office name to find its PIN code</p>
+        )}
       </div>
 
       {/* Error */}
