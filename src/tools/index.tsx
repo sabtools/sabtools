@@ -153,10 +153,25 @@ const toolComponents: Record<string, AnyComponent> = {
   "stopwatch": dynamic(() => import("./Stopwatch")),
   "world-clock": dynamic(() => import("./WorldClock")),
 
-  // Security & Privacy (3)
+  // Security & Privacy (11)
   "password-generator": dynamic(() => import("./PasswordGenerator")),
   "privacy-policy-generator": dynamic(() => import("./PrivacyPolicyGenerator")),
   "terms-conditions-generator": dynamic(() => import("./TermsConditionsGenerator")),
+  "password-strength-checker": dynamic(() => import("./PasswordStrengthChecker")),
+  "email-leak-checker": dynamic(() => import("./EmailLeakChecker")),
+  "website-ssl-checker": dynamic(() => import("./WebsiteSslChecker")),
+  "http-header-checker": dynamic(() => import("./HttpHeaderChecker")),
+  "dns-lookup-tool": dynamic(() => import("./DnsLookupTool")),
+  "whois-lookup": dynamic(() => import("./WhoisLookup")),
+  "ip-geolocation": dynamic(() => import("./IpGeolocation")),
+  "user-agent-parser": dynamic(() => import("./UserAgentParser")),
+
+  // WhatsApp & UPI (5)
+  "whatsapp-link-generator": dynamic(() => import("./WhatsappLinkGenerator")),
+  "whatsapp-formatter": dynamic(() => import("./WhatsappFormatter")),
+  "upi-qr-generator": dynamic(() => import("./UpiQrGenerator")),
+  "mobile-number-tracker": dynamic(() => import("./MobileNumberTracker")),
+  "ifsc-bank-details": dynamic(() => import("./IfscBankDetails")),
 
   // Health & Fitness (5)
   "bmr-calculator": dynamic(() => import("./BmrCalculator")),
@@ -426,6 +441,84 @@ const toolComponents: Record<string, AnyComponent> = {
   "ai-meeting-notes-summarizer": dynamic(() => import("./AiMeetingNotesSummarizer")),
   "ai-quiz-generator": dynamic(() => import("./AiQuizGenerator")),
   "ai-study-notes-generator": dynamic(() => import("./AiStudyNotesGenerator")),
+
+  // Science & Math (10)
+  "graphing-calculator": dynamic(() => import("./GraphingCalculator")),
+  "matrix-calculator": dynamic(() => import("./MatrixCalculator")),
+  "fraction-calculator": dynamic(() => import("./FractionCalculator")),
+  "quadratic-solver": dynamic(() => import("./QuadraticSolver")),
+  "prime-number-checker": dynamic(() => import("./PrimeNumberChecker")),
+  "statistics-calculator": dynamic(() => import("./StatisticsCalculator")),
+  "probability-calculator": dynamic(() => import("./ProbabilityCalculator")),
+  "algebra-solver": dynamic(() => import("./AlgebraSolver")),
+  "trig-calculator": dynamic(() => import("./TrigCalculator")),
+  "binary-calculator": dynamic(() => import("./BinaryCalculator")),
+
+  // Construction (10)
+  "concrete-calculator": dynamic(() => import("./ConcreteCalculator")),
+  "steel-weight-calculator": dynamic(() => import("./SteelWeightCalculator")),
+  "plywood-calculator": dynamic(() => import("./PlywoodCalculator")),
+  "flooring-cost-calculator": dynamic(() => import("./FlooringCostCalculator")),
+  "water-tank-calculator": dynamic(() => import("./WaterTankCalculator")),
+  "staircase-calculator": dynamic(() => import("./StaircaseCalculator")),
+  "roof-area-calculator": dynamic(() => import("./RoofAreaCalculator")),
+  "pipe-size-calculator": dynamic(() => import("./PipeSizeCalculator")),
+  "electrical-load-calculator": dynamic(() => import("./ElectricalLoadCalculator")),
+  "room-paint-visualizer": dynamic(() => import("./RoomPaintVisualizer")),
+
+  // Data & Charts (7)
+  "chart-maker": dynamic(() => import("./ChartMaker")),
+  "table-generator": dynamic(() => import("./TableGenerator")),
+  "flowchart-maker": dynamic(() => import("./FlowchartMaker")),
+  "mind-map-generator": dynamic(() => import("./MindMapGenerator")),
+  "csv-viewer-editor": dynamic(() => import("./CsvViewerEditor")),
+  "sql-table-generator": dynamic(() => import("./SqlTableGenerator")),
+  "json-to-table-viewer": dynamic(() => import("./JsonToTableViewer")),
+
+  // Advanced CSS & SEO Tools (8)
+  "css-grid-generator": dynamic(() => import("./CssGridGenerator")),
+  "flexbox-playground": dynamic(() => import("./FlexboxPlayground")),
+  "tailwind-generator": dynamic(() => import("./TailwindGenerator")),
+  "svg-editor": dynamic(() => import("./SvgEditor")),
+  "structured-data-generator": dynamic(() => import("./StructuredDataGenerator")),
+  "htaccess-generator": dynamic(() => import("./HtaccessGenerator")),
+  "redirect-checker": dynamic(() => import("./RedirectChecker")),
+  "website-speed-estimator": dynamic(() => import("./WebsiteSpeedEstimator")),
+
+  // Career Tools (7)
+  "resume-builder": dynamic(() => import("./ResumeBuilder")),
+  "resume-score-checker": dynamic(() => import("./ResumeScoreChecker")),
+  "salary-comparison-tool": dynamic(() => import("./SalaryComparisonTool")),
+  "notice-period-calculator": dynamic(() => import("./NoticePeriodCalculator")),
+  "experience-calculator": dynamic(() => import("./ExperienceCalculator")),
+  "appraisal-hike-calculator": dynamic(() => import("./AppraisalHikeCalculator")),
+  "in-hand-salary-calculator": dynamic(() => import("./InHandSalaryCalculator")),
+
+  // Shopping Tools (5)
+  "advanced-discount-calculator": dynamic(() => import("./AdvancedDiscountCalculator")),
+  "gst-inclusive-exclusive": dynamic(() => import("./GstInclusiveExclusive")),
+  "emi-affordability-calculator": dynamic(() => import("./EmiAffordabilityCalculator")),
+  "price-per-unit-comparator": dynamic(() => import("./PricePerUnitComparator")),
+  "cashback-calculator": dynamic(() => import("./CashbackCalculator")),
+
+  // Student Tools (5)
+  "graph-paper-generator": dynamic(() => import("./GraphPaperGenerator")),
+  "flashcard-maker": dynamic(() => import("./FlashcardMaker")),
+  "timetable-generator": dynamic(() => import("./TimetableGenerator")),
+  "handwriting-page-generator": dynamic(() => import("./HandwritingPageGenerator")),
+  "assignment-word-counter": dynamic(() => import("./AssignmentWordCounter")),
+
+  // India Guide (10)
+  "aadhaar-masked-generator": dynamic(() => import("./AadhaarMaskedGenerator")),
+  "indian-festival-calendar": dynamic(() => import("./IndianFestivalCalendar")),
+  "train-seat-layout": dynamic(() => import("./TrainSeatLayout")),
+  "indian-pin-code-directory": dynamic(() => import("./IndianPinCodeDirectory")),
+  "lpg-subsidy-calculator": dynamic(() => import("./LpgSubsidyCalculator")),
+  "electricity-rate-finder": dynamic(() => import("./ElectricityRateFinder")),
+  "wedding-food-calculator": dynamic(() => import("./WeddingFoodCalculator")),
+  "emi-vs-rent-calculator": dynamic(() => import("./EmiVsRentCalculator")),
+  "indian-name-meaning": dynamic(() => import("./IndianNameMeaning")),
+  "govt-scheme-checker": dynamic(() => import("./GovtSchemeChecker")),
 };
 
 function ComingSoonWrapper({ name }: { name: string }) {
