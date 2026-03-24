@@ -8,16 +8,28 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg">
-                S
-              </div>
+            <div className="flex items-center gap-2.5 mb-4">
+              <svg width="36" height="36" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" className="rounded-xl">
+                <defs>
+                  <linearGradient id="footerLogoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#7C3AED" />
+                    <stop offset="50%" stopColor="#6366F1" />
+                    <stop offset="100%" stopColor="#3B82F6" />
+                  </linearGradient>
+                </defs>
+                <rect width="512" height="512" rx="128" fill="url(#footerLogoGrad)"/>
+                <rect x="80" y="80" width="155" height="155" rx="32" fill="white" opacity="0.9"/>
+                <rect x="277" y="80" width="155" height="155" rx="32" fill="white" opacity="0.6"/>
+                <rect x="80" y="277" width="155" height="155" rx="32" fill="white" opacity="0.6"/>
+                <rect x="277" y="277" width="155" height="155" rx="32" fill="white" opacity="0.35"/>
+                <text x="157" y="185" fontFamily="Arial, Helvetica, sans-serif" fontSize="120" fontWeight="bold" fill="#7C3AED" textAnchor="middle">S</text>
+              </svg>
               <span className="text-xl font-bold text-white">
-                Sab<span className="text-indigo-400">Tools</span>.in
+                Sab<span className="text-purple-400">Tools</span><span className="text-purple-300 text-sm font-light">.in</span>
               </span>
             </div>
             <p className="text-sm text-gray-400 leading-relaxed">
-              Free online tools for everyone. 70+ calculators, converters, text tools, developer tools and more. No signup, no limits, 100% free.
+              India&apos;s #1 free online tools website. 318+ calculators, converters, AI tools, PDF tools, developer tools and more. No signup, no limits, 100% free.
             </p>
           </div>
 

@@ -27,14 +27,26 @@ export default function Header() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg shadow-md">
-              S
-            </div>
+          <Link href="/" className="flex items-center gap-2.5">
+            <svg width="36" height="36" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg" className="shadow-md rounded-xl">
+              <defs>
+                <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#7C3AED" />
+                  <stop offset="50%" stopColor="#6366F1" />
+                  <stop offset="100%" stopColor="#3B82F6" />
+                </linearGradient>
+              </defs>
+              <rect width="512" height="512" rx="128" fill="url(#logoGrad)"/>
+              <rect x="80" y="80" width="155" height="155" rx="32" fill="white" opacity="0.9"/>
+              <rect x="277" y="80" width="155" height="155" rx="32" fill="white" opacity="0.6"/>
+              <rect x="80" y="277" width="155" height="155" rx="32" fill="white" opacity="0.6"/>
+              <rect x="277" y="277" width="155" height="155" rx="32" fill="white" opacity="0.35"/>
+              <text x="157" y="185" fontFamily="Arial, Helvetica, sans-serif" fontSize="120" fontWeight="bold" fill="#7C3AED" textAnchor="middle">S</text>
+            </svg>
             <span className="text-xl font-bold">
-              <span className="gradient-text">Sab</span>
-              <span className="text-gray-700">Tools</span>
-              <span className="text-indigo-400 text-sm">.in</span>
+              <span className="text-gray-900">Sab</span>
+              <span className="text-purple-600">Tools</span>
+              <span className="text-purple-400 text-sm font-light">.in</span>
             </span>
           </Link>
 
