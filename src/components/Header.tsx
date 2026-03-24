@@ -43,11 +43,7 @@ export default function Header() {
               <rect x="277" y="277" width="155" height="155" rx="32" fill="white" opacity="0.35"/>
               <text x="157" y="185" fontFamily="Arial, Helvetica, sans-serif" fontSize="120" fontWeight="bold" fill="#7C3AED" textAnchor="middle">S</text>
             </svg>
-            <span className="text-xl font-bold">
-              <span className="text-gray-900">Sab</span>
-              <span className="text-purple-600">Tools</span>
-              <span className="text-purple-400 text-sm font-light">.in</span>
-            </span>
+            <span className="text-xl font-bold tracking-tight"><span className="text-gray-900">Sab</span><span className="text-purple-600">Tools</span><span className="text-purple-400 text-base font-normal">.in</span></span>
           </Link>
 
           {/* Desktop Nav */}
