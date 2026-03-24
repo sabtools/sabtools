@@ -113,7 +113,7 @@ export default function FlashcardMaker() {
           </div>
         )}
 
-        {answered > 0 && mode === "edit" && (
+        {answered > 0 && currentIdx >= studyCards.length - 1 && flipped && (
           <div className="result-card text-center">
             <div className="text-lg font-bold text-indigo-600 mb-1">Study Complete!</div>
             <div className="text-2xl font-extrabold text-gray-800">{score}/{answered} correct</div>
