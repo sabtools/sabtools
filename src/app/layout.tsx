@@ -3,6 +3,8 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import InstallPrompt from "@/components/InstallPrompt";
+import SuggestTool from "@/components/SuggestTool";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -112,6 +114,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
+        <InstallPrompt />
+        <SuggestTool />
       </body>
     </html>
   );
