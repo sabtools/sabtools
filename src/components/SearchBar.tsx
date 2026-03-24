@@ -34,7 +34,7 @@ export default function SearchBar() {
         <input
           type="text"
           placeholder="Search tools... e.g. EMI Calculator, Word Counter"
-          className="search-bar pl-14"
+          className="search-bar"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onFocus={() => setFocused(true)}
