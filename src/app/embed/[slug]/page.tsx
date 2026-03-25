@@ -2,31 +2,8 @@ import { notFound } from "next/navigation";
 import { tools } from "@/lib/tools";
 import ToolRenderer from "./ToolRenderer";
 
-const popularSlugs = [
-  "emi-calculator",
-  "sip-calculator",
-  "gst-calculator",
-  "income-tax-calculator",
-  "percentage-calculator",
-  "age-calculator",
-  "hra-calculator",
-  "ppf-calculator",
-  "fd-calculator",
-  "rd-calculator",
-  "nps-calculator",
-  "gratuity-calculator",
-  "bmi-calculator",
-  "word-counter",
-  "image-compressor",
-  "compound-interest-calculator",
-  "simple-interest-calculator",
-  "cgpa-to-percentage",
-  "number-to-words",
-  "currency-converter",
-];
-
 export function generateStaticParams() {
-  return popularSlugs.map((slug) => ({ slug }));
+  return tools.map((t) => ({ slug: t.slug }));
 }
 
 export default async function EmbedPage({ params }: { params: Promise<{ slug: string }> }) {
