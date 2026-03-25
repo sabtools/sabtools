@@ -30,26 +30,27 @@ export default function InHandSalaryCalculator() {
     const grossAnnual = annual - employerPF;
     const grossMonthly = grossAnnual / 12;
 
-    // Income Tax calculation (New Regime FY 2024-25)
+    // Income Tax calculation (FY 2025-26 / AY 2026-27)
     let taxableIncome = grossAnnual - employeePF - annualPT;
     if (regime === "old") {
       // Old regime with 80C, HRA etc.
       const sec80C = Math.min(150000, employeePF);
       const hraExempt = metroCity ? Math.min(hra, monthlyBasic * 12 * 0.5, hra) : Math.min(hra, monthlyBasic * 12 * 0.4, hra);
-      taxableIncome = grossAnnual - employeePF - annualPT - sec80C - hraExempt * 0.5 - 50000; // Standard deduction
+      taxableIncome = grossAnnual - employeePF - annualPT - sec80C - hraExempt * 0.5 - 50000; // Standard deduction ₹50,000
     } else {
-      taxableIncome = grossAnnual - 75000; // Standard deduction new regime
+      taxableIncome = grossAnnual - 75000; // Standard deduction ₹75,000 new regime
     }
 
     let tax = 0;
     if (regime === "new") {
-      // New Tax Regime FY 2024-25
+      // New Tax Regime FY 2025-26 (AY 2026-27)
       const slabs = [
-        { limit: 300000, rate: 0 },
-        { limit: 700000, rate: 5 },
-        { limit: 1000000, rate: 10 },
-        { limit: 1200000, rate: 15 },
-        { limit: 1500000, rate: 20 },
+        { limit: 400000, rate: 0 },
+        { limit: 800000, rate: 5 },
+        { limit: 1200000, rate: 10 },
+        { limit: 1600000, rate: 15 },
+        { limit: 2000000, rate: 20 },
+        { limit: 2400000, rate: 25 },
         { limit: Infinity, rate: 30 },
       ];
       let remaining = Math.max(0, taxableIncome);
@@ -61,14 +62,13 @@ export default function InHandSalaryCalculator() {
         prev = slab.limit;
         if (remaining <= 0) break;
       }
-      // Rebate u/s 87A for income up to 7L
-      if (taxableIncome <= 700000) tax = 0;
+      // Section 87A rebate: Income up to ₹12,00,000 (after standard deduction) = no tax (rebate up to ₹60,000)
+      if (taxableIncome <= 1200000) tax = Math.max(0, tax - 60000);
     } else {
-      // Old Tax Regime
+      // Old Tax Regime FY 2025-26
       const slabs = [
-        { limit: 250000, rate: 0 },
-        { limit: 500000, rate: 5 },
-        { limit: 1000000, rate: 20 },
+        { limit: 250000, rate: 5 },
+        { limit: 500000, rate: 20 },
         { limit: Infinity, rate: 30 },
       ];
       let remaining = Math.max(0, taxableIncome);
@@ -80,6 +80,7 @@ export default function InHandSalaryCalculator() {
         prev = slab.limit;
         if (remaining <= 0) break;
       }
+      // Section 87A rebate for old regime: taxable income up to ₹5,00,000
       if (taxableIncome <= 500000) tax = 0;
     }
     const cess = tax * 0.04;
@@ -102,6 +103,9 @@ export default function InHandSalaryCalculator() {
 
   return (
     <div className="space-y-6">
+      <div className="inline-block bg-indigo-100 text-indigo-800 text-sm font-semibold px-4 py-1.5 rounded-full">
+        {"\uD83D\uDCC5"} Tax Slabs: FY 2025-26 (AY 2026-27)
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className="text-sm font-semibold text-gray-700 block mb-2">Annual CTC (₹)</label>
@@ -198,6 +202,18 @@ export default function InHandSalaryCalculator() {
           </div>
         </div>
       )}
+
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-800">
+        <div className="flex items-start gap-2">
+          <span className="text-lg">{"\u2139\uFE0F"}</span>
+          <div>
+            <p className="font-semibold mb-1">Disclaimer</p>
+            <p>Tax calculations are based on FY 2025-26 slabs as announced in Union Budget 2025. This is an estimate for illustration purposes. For exact tax liability, consult a Chartered Accountant or use the official Income Tax portal at{" "}
+              <a href="https://www.incometax.gov.in" target="_blank" rel="noopener noreferrer" className="underline font-semibold text-blue-700 hover:text-blue-900">incometax.gov.in</a>.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

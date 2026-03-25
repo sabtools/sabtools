@@ -17,7 +17,7 @@ export default function EpfCalculator() {
     if (basicSalary <= 0 || currentAge >= retirementAge) return null;
 
     const years = retirementAge - currentAge;
-    const monthlyRate = 8.15 / 12 / 100; // Current EPF interest rate
+    const monthlyRate = 8.25 / 12 / 100; // EPF interest rate FY 2025-26
     let totalEmployeeContrib = 0;
     let totalEmployerContrib = 0;
     let balance = currentBalance;
@@ -43,7 +43,7 @@ export default function EpfCalculator() {
   return (
     <div className="space-y-8">
       <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-800">
-        <strong>EPF Interest Rate:</strong> 8.15% p.a. (FY 2023-24). Employer contributes 3.67% to EPF and 8.33% to EPS.
+        <strong>EPF Interest Rate:</strong> 8.25% p.a. (FY 2025-26). Employer contributes 3.67% to EPF and 8.33% to EPS.
       </div>
 
       <div className="space-y-6">
@@ -143,6 +143,16 @@ export default function EpfCalculator() {
           </div>
         </div>
       )}
+
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-800">
+        <div className="flex items-start gap-2">
+          <span className="text-lg">{"\u2139\uFE0F"}</span>
+          <div>
+            <p className="font-semibold mb-1">Disclaimer</p>
+            <p>EPF interest rate used: 8.25% (FY 2025-26). Rate set annually by EPFO. Check epfindia.gov.in for latest.</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

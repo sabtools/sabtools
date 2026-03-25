@@ -215,6 +215,16 @@ export default function ElectricityRateFinder() {
           </div>
         </div>
       )}
+
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-800">
+        <div className="flex items-start gap-2">
+          <span className="text-lg">{"\u2139\uFE0F"}</span>
+          <div>
+            <p className="font-semibold mb-1">Disclaimer</p>
+            <p>Tariff rates approximate based on published state electricity board rates. Verify with your distribution company.</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

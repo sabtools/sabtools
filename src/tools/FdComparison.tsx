@@ -48,6 +48,10 @@ export default function FdComparison() {
 
   return (
     <div className="space-y-8">
+      <div className="bg-indigo-50 border border-indigo-200 rounded-xl px-4 py-2 text-sm text-indigo-700 font-semibold text-center">
+        📅 FD Rates as of March 2026
+      </div>
+
       {/* Inputs */}
       <div className="space-y-4">
         <div>
@@ -115,8 +119,14 @@ export default function FdComparison() {
         </table>
       </div>
 
-      <div className="result-card bg-yellow-50 border border-yellow-200">
-        <p className="text-sm text-yellow-700"><strong>Disclaimer:</strong> FD rates are indicative and may change. Please verify current rates on the respective bank website before investing.</p>
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-800">
+        <div className="flex items-start gap-2">
+          <span className="text-lg">{"\u2139\uFE0F"}</span>
+          <div>
+            <p className="font-semibold mb-1">Disclaimer</p>
+            <p>FD rates are approximate as of March 2026. Banks update rates frequently. Verify on your bank{"'"}s website.</p>
+          </div>
+        </div>
       </div>
     </div>
   );

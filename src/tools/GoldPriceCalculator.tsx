@@ -1,5 +1,5 @@
 "use client";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 
 const PURITY_OPTIONS = [
   { label: "24K (99.9% Pure)", karat: 24, factor: 1.0 },
@@ -11,12 +11,15 @@ const PURITY_OPTIONS = [
 export default function GoldPriceCalculator() {
   const [weight, setWeight] = useState("");
   const [purity, setPurity] = useState(22);
-  const [goldPrice, setGoldPrice] = useState("6500");
+  const [goldPrice, setGoldPrice] = useState("8800");
   const [includeMaking, setIncludeMaking] = useState(false);
   const [makingPercent, setMakingPercent] = useState(10);
 
-  const fmt = (n: number) =>
-    new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 }).format(n);
+  const fmt = useCallback(
+    (n: number) =>
+      new Intl.NumberFormat("en-IN", { style: "currency", currency: "INR", maximumFractionDigits: 0 }).format(n),
+    []
+  );
 
   const selectedPurity = PURITY_OPTIONS.find((p) => p.karat === purity)!;
 
@@ -34,11 +37,16 @@ export default function GoldPriceCalculator() {
     return { pricePerGram, goldValue, makingCharges, gst, totalValue };
   }, [weight, goldPrice, purity, includeMaking, makingPercent, selectedPurity]);
 
+  const handleCheckLivePrice = useCallback(() => {
+    window.open("https://www.google.com/search?q=gold+price+today+India", "_blank", "noopener,noreferrer");
+  }, []);
+
   return (
     <div className="space-y-6">
-      <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-800">
-        <strong>Gold Price Calculator:</strong> Enter today&apos;s 24K gold rate per gram and the weight to calculate total
-        value. GST on gold is 3%.
+      <div className="bg-gradient-to-r from-amber-50 to-yellow-50 border-2 border-amber-300 rounded-xl p-5 text-center">
+        <div className="text-sm text-amber-700 font-medium mb-1">Enter Today&apos;s 24K Gold Rate (&#8377;/gram)</div>
+        <div className="text-4xl font-extrabold text-amber-600">&#8377;{goldPrice ? parseInt(goldPrice).toLocaleString("en-IN") : "—"}/g</div>
+        <div className="text-xs text-amber-500 mt-2">Edit the price below to match today&apos;s rate</div>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -54,14 +62,26 @@ export default function GoldPriceCalculator() {
           />
         </div>
         <div>
-          <label className="text-sm font-semibold text-gray-700 block mb-2">24K Gold Price (per gram) ₹</label>
-          <input
-            type="number"
-            placeholder="e.g. 6500"
-            value={goldPrice}
-            onChange={(e) => setGoldPrice(e.target.value)}
-            className="calc-input"
-          />
+          <label className="text-sm font-semibold text-gray-700 block mb-2">Enter today&apos;s 24K gold rate (&#8377;/gram)</label>
+          <div className="flex gap-2">
+            <input
+              type="number"
+              placeholder="e.g. 8800"
+              value={goldPrice}
+              onChange={(e) => setGoldPrice(e.target.value)}
+              className="calc-input flex-1"
+            />
+            <button
+              onClick={handleCheckLivePrice}
+              className="btn-primary text-xs whitespace-nowrap px-3"
+              title="Check live gold price on Google"
+            >
+              Check Live Price
+            </button>
+          </div>
+          <div className="text-xs text-gray-400 mt-1">
+            Default: &#8377;8,800/g (approx. March 2026). Update with today&apos;s rate for accurate results.
+          </div>
         </div>
       </div>
 
@@ -160,6 +180,10 @@ export default function GoldPriceCalculator() {
           </div>
         </div>
       )}
+
+      <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 text-sm text-amber-800">
+        <strong>Disclaimer:</strong> Gold prices are user-entered. Verify with your local jeweller or google.com/finance for the latest rates before making any purchase decisions.
+      </div>
     </div>
   );
 }

@@ -137,6 +137,16 @@ export default function SukanyaSamriddhiCalculator() {
           </div>
         </div>
       )}
+
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-800">
+        <div className="flex items-start gap-2">
+          <span className="text-lg">{"\u2139\uFE0F"}</span>
+          <div>
+            <p className="font-semibold mb-1">Disclaimer</p>
+            <p>SSY rate: 8.2% (Q4 FY 2025-26). Revised quarterly. Check indiapost.gov.in</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

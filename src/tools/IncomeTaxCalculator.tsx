@@ -12,16 +12,19 @@ export default function IncomeTaxCalculator() {
 
     let tax = 0;
     if (regime === "new") {
-      // New Regime FY 2024-25
+      // New Regime FY 2025-26 (AY 2026-27)
+      // Standard deduction of ₹75,000
+      const taxableIncome = Math.max(0, inc - 75000);
       const slabs = [
-        { limit: 300000, rate: 0 },
-        { limit: 700000, rate: 5 },
-        { limit: 1000000, rate: 10 },
-        { limit: 1200000, rate: 15 },
-        { limit: 1500000, rate: 20 },
+        { limit: 400000, rate: 0 },
+        { limit: 800000, rate: 5 },
+        { limit: 1200000, rate: 10 },
+        { limit: 1600000, rate: 15 },
+        { limit: 2000000, rate: 20 },
+        { limit: 2400000, rate: 25 },
         { limit: Infinity, rate: 30 },
       ];
-      let remaining = inc;
+      let remaining = taxableIncome;
       let prev = 0;
       for (const slab of slabs) {
         const taxable = Math.min(remaining, slab.limit - prev);
@@ -30,12 +33,14 @@ export default function IncomeTaxCalculator() {
         remaining -= taxable;
         prev = slab.limit;
       }
-      // Rebate u/s 87A for income up to 7L
-      if (inc <= 700000) tax = 0;
+      // Section 87A rebate: Income up to ₹12,00,000 (after standard deduction) = no tax (rebate up to ₹60,000)
+      if (taxableIncome <= 1200000) tax = Math.max(0, tax - 60000);
     } else {
-      // Old Regime
+      // Old Regime FY 2025-26
+      // Standard deduction of ₹50,000
+      const stdDeduction = 50000;
       const exemption = age === "below60" ? 250000 : age === "60to80" ? 300000 : 500000;
-      const taxable = Math.max(0, inc - exemption);
+      const taxable = Math.max(0, inc - stdDeduction - exemption);
       const slabs = [
         { limit: 250000, rate: 5 },
         { limit: 500000, rate: 20 },
@@ -50,6 +55,8 @@ export default function IncomeTaxCalculator() {
         remaining -= t;
         prev = slab.limit;
       }
+      // Section 87A rebate for old regime: taxable income up to ₹5,00,000
+      if (taxable <= 500000) tax = 0;
     }
 
     const cess = tax * 0.04;
@@ -64,6 +71,9 @@ export default function IncomeTaxCalculator() {
 
   return (
     <div className="space-y-6">
+      <div className="inline-block bg-indigo-100 text-indigo-800 text-sm font-semibold px-4 py-1.5 rounded-full">
+        {"\uD83D\uDCC5"} Tax Slabs: FY 2025-26 (AY 2026-27)
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label className="text-sm font-semibold text-gray-700 block mb-2">Annual Income (₹)</label>
@@ -101,6 +111,12 @@ export default function IncomeTaxCalculator() {
           <div className="text-center text-sm text-gray-500">Effective Tax Rate: <span className="font-bold text-indigo-600">{result.effectiveRate.toFixed(2)}%</span></div>
         </div>
       )}
+
+      <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 text-xs text-blue-800 leading-relaxed">
+        <span className="mr-1">{"\u2139\uFE0F"}</span>
+        <strong>Disclaimer:</strong> Tax calculations are based on FY 2025-26 rates as announced in Union Budget 2025. Surcharge and cess (4% health &amp; education cess) are included. For exact tax liability, consult a Chartered Accountant or use the official Income Tax portal at{" "}
+        <a href="https://www.incometax.gov.in" target="_blank" rel="noopener noreferrer" className="underline font-semibold text-blue-700 hover:text-blue-900">incometax.gov.in</a>.
+      </div>
     </div>
   );
 }

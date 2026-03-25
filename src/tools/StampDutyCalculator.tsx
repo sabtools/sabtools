@@ -143,6 +143,16 @@ export default function StampDutyCalculator() {
           </div>
         </div>
       )}
+
+      <div className="mt-6 bg-blue-50 border border-blue-200 rounded-xl p-4 text-sm text-blue-800">
+        <div className="flex items-start gap-2">
+          <span className="text-lg">{"\u2139\uFE0F"}</span>
+          <div>
+            <p className="font-semibold mb-1">Disclaimer</p>
+            <p>Stamp duty rates are approximate state-level rates. Actual charges vary by property type and location. Consult Sub-Registrar office.</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
