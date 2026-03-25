@@ -21,7 +21,7 @@ export default function SearchBar() {
   }, [query]);
 
   return (
-    <div className="relative w-full max-w-2xl mx-auto">
+    <div className="relative w-full max-w-2xl mx-auto" style={{ zIndex: 9999 }}>
       <div className="relative">
         <svg
           className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"
@@ -42,7 +42,7 @@ export default function SearchBar() {
         />
       </div>
       {focused && results.length > 0 && (
-        <div className="absolute top-full mt-2 w-full bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden z-50">
+        <div className="absolute top-full mt-2 w-full bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden" style={{ zIndex: 9999 }}>
           {results.map((tool) => (
             <Link
               key={tool.slug}
