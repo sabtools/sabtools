@@ -2,7 +2,11 @@ import Breadcrumb from "@/components/Breadcrumb";
 import AdBanner from "@/components/AdBanner";
 import RelatedTools from "@/components/RelatedTools";
 import ShareButtons from "@/components/ShareButtons";
+import WhatsAppShareResult from "@/components/WhatsAppShareResult";
+import EmbedCode from "@/components/EmbedCode";
 import ToolFaq from "@/components/ToolFaq";
+import TrackToolVisit from "@/components/TrackToolVisit";
+import FavoriteButton from "@/components/FavoriteButton";
 import type { Tool } from "@/lib/tools";
 import { categories } from "@/lib/tools";
 
@@ -50,6 +54,7 @@ export default function ToolPageLayout({ tool, children }: ToolPageLayoutProps) 
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <TrackToolVisit slug={tool.slug} />
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8">
         <Breadcrumb
           items={[
@@ -70,7 +75,10 @@ export default function ToolPageLayout({ tool, children }: ToolPageLayoutProps) 
                 <p className="text-gray-500">{tool.description}</p>
               </div>
             </div>
-            <ShareButtons title={`${tool.name} - Free Online Tool | SabTools.in`} />
+            <div className="flex items-center gap-2">
+              <FavoriteButton slug={tool.slug} />
+              <ShareButtons title={`${tool.name} - Free Online Tool | SabTools.in`} />
+            </div>
           </div>
         </div>
 
@@ -79,6 +87,12 @@ export default function ToolPageLayout({ tool, children }: ToolPageLayoutProps) 
         <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 sm:p-8">
           {children}
         </div>
+
+        <div className="mt-6 flex items-center justify-center">
+          <WhatsAppShareResult toolName={tool.name} slug={tool.slug} />
+        </div>
+
+        <EmbedCode slug={tool.slug} />
 
         <AdBanner format="horizontal" className="mt-8" />
 

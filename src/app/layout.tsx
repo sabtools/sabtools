@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import InstallPrompt from "@/components/InstallPrompt";
 import SuggestTool from "@/components/SuggestTool";
+import AskSabTools from "@/components/AskSabTools";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -96,6 +97,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("theme");if(t==="dark"){document.documentElement.classList.add("dark")}}catch(e){}})();`,
+          }}
+        />
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="icon" href="/favicon.svg" sizes="any" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.svg" />
@@ -116,6 +122,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <InstallPrompt />
         <SuggestTool />
+        <AskSabTools />
       </body>
     </html>
   );

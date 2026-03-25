@@ -416,3 +416,337 @@ input[type="range"]::-webkit-slider-thumb {
 .table-responsive tr:hover td {
   background: #f8fafc;
 }
+
+/* ===== Dark Mode ===== */
+.dark {
+  --bg: #0f172a;
+  --bg-card: #1e293b;
+  --text: #e2e8f0;
+  --text-muted: #94a3b8;
+  --border: #334155;
+}
+
+.dark body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Header */
+.dark header {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  border-color: #334155;
+}
+
+.dark header .text-gray-900 {
+  color: #f1f5f9;
+}
+
+.dark header .text-gray-600,
+.dark header .text-gray-700 {
+  color: #cbd5e1;
+}
+
+.dark header .text-gray-400 {
+  color: #64748b;
+}
+
+.dark header .text-gray-500 {
+  color: #94a3b8;
+}
+
+.dark header .bg-gray-100 {
+  background: #334155;
+}
+
+.dark header .hover\:bg-gray-100:hover {
+  background: #334155;
+}
+
+.dark header .hover\:bg-indigo-50:hover {
+  background: rgba(99, 102, 241, 0.15);
+}
+
+.dark header .bg-white {
+  background: #1e293b;
+}
+
+.dark header .border-gray-100 {
+  border-color: #334155;
+}
+
+/* Tool card dark */
+.dark .tool-card {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.dark .tool-card:hover {
+  border-color: #818cf8;
+  box-shadow: 0 10px 40px rgba(99, 102, 241, 0.15);
+}
+
+.dark .tool-card .text-gray-800 {
+  color: #e2e8f0;
+}
+
+.dark .tool-card .text-gray-500 {
+  color: #94a3b8;
+}
+
+.dark .tool-card .bg-indigo-50 {
+  background: rgba(99, 102, 241, 0.2);
+}
+
+.dark .tool-card .group-hover\:bg-indigo-100:hover {
+  background: rgba(99, 102, 241, 0.3);
+}
+
+/* Glass card dark */
+.dark .glass-card {
+  background: rgba(30, 41, 59, 0.8);
+  border-color: rgba(51, 65, 85, 0.6);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+.dark .glass-card:hover {
+  box-shadow: 0 8px 40px rgba(99, 102, 241, 0.15);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.dark .glass-card .text-gray-800 {
+  color: #e2e8f0;
+}
+
+.dark .glass-card .text-gray-500 {
+  color: #94a3b8;
+}
+
+/* Calc input dark */
+.dark .calc-input {
+  background: #1e293b;
+  border-color: #334155;
+  color: #e2e8f0;
+}
+
+.dark .calc-input:focus {
+  background: #0f172a;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+}
+
+/* Result card dark */
+.dark .result-card {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15), rgba(139, 92, 246, 0.1));
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+/* Search bar dark */
+.dark .search-bar {
+  background: #1e293b;
+  border-color: #334155;
+  color: #e2e8f0;
+}
+
+.dark .search-bar:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2), 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+/* Blog article dark */
+.dark .blog-article {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+/* Blog content dark */
+.dark .blog-content {
+  color: #cbd5e1;
+}
+
+.dark .blog-content h2 {
+  color: #f1f5f9;
+  border-color: #334155;
+}
+
+.dark .blog-content h3 {
+  color: #e2e8f0;
+}
+
+.dark .blog-content h4 {
+  color: #e2e8f0;
+}
+
+.dark .blog-content strong {
+  color: #f1f5f9;
+}
+
+.dark .blog-content a {
+  color: #818cf8;
+  text-decoration-color: rgba(99, 102, 241, 0.4);
+}
+
+.dark .blog-content a:hover {
+  color: #a5b4fc;
+}
+
+.dark .blog-content blockquote {
+  background: rgba(99, 102, 241, 0.1);
+  border-color: #6366f1;
+  color: #94a3b8;
+}
+
+.dark .blog-content code {
+  background: #334155;
+  color: #a5b4fc;
+}
+
+.dark .blog-content th {
+  background: #334155;
+  color: #cbd5e1;
+}
+
+.dark .blog-content td {
+  border-color: #334155;
+}
+
+.dark .blog-content tr:hover td {
+  background: rgba(51, 65, 85, 0.5);
+}
+
+/* Ad placeholder dark */
+.dark .ad-placeholder {
+  background: #1e293b;
+  border-color: #334155;
+  color: #64748b;
+}
+
+/* Slider dark */
+.dark input[type="range"] {
+  background: #334155;
+}
+
+/* Breadcrumb dark */
+.dark .breadcrumb a {
+  color: #94a3b8;
+}
+
+.dark .breadcrumb a:hover {
+  color: #818cf8;
+}
+
+/* Responsive table dark */
+.dark .table-responsive {
+  border-color: #334155;
+}
+
+.dark .table-responsive th {
+  background: #334155;
+  color: #cbd5e1;
+}
+
+.dark .table-responsive td {
+  border-color: #334155;
+}
+
+.dark .table-responsive tr:hover td {
+  background: rgba(51, 65, 85, 0.5);
+}
+
+/* Generic dark mode overrides */
+.dark .bg-white {
+  background: #1e293b;
+}
+
+.dark .bg-gray-50,
+.dark .bg-gray-100 {
+  background: #0f172a;
+}
+
+.dark .border-gray-100,
+.dark .border-gray-200 {
+  border-color: #334155;
+}
+
+.dark .text-gray-900 {
+  color: #f1f5f9;
+}
+
+.dark .text-gray-800 {
+  color: #e2e8f0;
+}
+
+.dark .text-gray-700 {
+  color: #cbd5e1;
+}
+
+.dark .text-gray-600 {
+  color: #94a3b8;
+}
+
+.dark .text-gray-500 {
+  color: #94a3b8;
+}
+
+.dark .text-gray-400 {
+  color: #64748b;
+}
+
+/* Hero section dark */
+.dark .from-indigo-50 {
+  --tw-gradient-from: rgba(30, 27, 75, 0.5);
+}
+
+.dark .via-purple-50 {
+  --tw-gradient-via: rgba(46, 16, 101, 0.3);
+}
+
+.dark .to-pink-50 {
+  --tw-gradient-to: rgba(80, 7, 36, 0.2);
+}
+
+.dark .to-purple-50 {
+  --tw-gradient-to: rgba(46, 16, 101, 0.3);
+}
+
+/* Why choose section dark */
+.dark section.bg-gradient-to-br .bg-white {
+  background: #1e293b;
+}
+
+/* Button secondary dark */
+.dark .btn-secondary {
+  background: #1e293b;
+  color: #818cf8;
+  border-color: #818cf8;
+}
+
+.dark .btn-secondary:hover {
+  background: #6366f1;
+  color: white;
+}
+
+/* Footer dark */
+.dark footer {
+  background: #0f172a;
+  border-color: #334155;
+}
+
+/* Tool page wrapper dark */
+.dark .bg-white.rounded-2xl {
+  background: #1e293b;
+}
+
+/* Prose dark */
+.dark .prose.prose-gray .text-gray-800 {
+  color: #e2e8f0;
+}
+
+.dark .prose.prose-gray .text-gray-600 {
+  color: #94a3b8;
+}
+
+/* Mobile menu dark */
+.dark .md\:hidden .bg-white {
+  background: #1e293b;
+}

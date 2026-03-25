@@ -3,6 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { categories } from "@/lib/tools";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -105,6 +106,7 @@ export default function Header() {
                 हिंदी
               </span>
             </Link>
+            <ThemeToggle />
           </nav>
 
           {/* Mobile: Language Toggle + Menu Button */}
@@ -133,6 +135,8 @@ export default function Header() {
                 हि
               </span>
             </Link>
+
+            <ThemeToggle />
 
             {/* Menu Button */}
             <button

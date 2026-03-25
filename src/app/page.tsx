@@ -2,6 +2,8 @@ import Link from "next/link";
 import SearchBar from "@/components/SearchBar";
 import ToolCard from "@/components/ToolCard";
 import AdBanner from "@/components/AdBanner";
+import RecentlyUsed from "@/components/RecentlyUsed";
+import FavoriteTools from "@/components/FavoriteTools";
 import { categories, tools } from "@/lib/tools";
 
 export default function HomePage() {
@@ -85,6 +87,12 @@ export default function HomePage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 mt-8">
         <AdBanner format="horizontal" />
       </div>
+
+      {/* Recently Used Tools */}
+      <RecentlyUsed />
+
+      {/* Favorite Tools */}
+      <FavoriteTools />
 
       {/* Popular Tools */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 py-16">
