@@ -1356,6 +1356,491 @@ const blogPosts: BlogPost[] = [
       <p>Most banks will reject applications below 700. However, some NBFCs and fintech lenders approve loans at 600-650 with higher interest rates (often 4-6% more than standard rates). Use the <a href="/tools/credit-card-payment-calculator">Credit Card Payment Calculator</a> to plan your debt payoff and improve your score before applying.</p>
     `,
   },
+  {
+    slug: "gratuity-calculation-india-rules-formula",
+    title: "How to Calculate Gratuity in India — Rules, Formula & Eligibility 2026",
+    description: "Learn the complete gratuity calculation formula for 2026, eligibility rules under the Payment of Gratuity Act, tax exemption limits, and step-by-step examples for Indian employees.",
+    date: "2026-03-26",
+    category: "Finance",
+    readTime: "9 min read",
+    keywords: ["gratuity calculator", "gratuity calculation formula", "gratuity eligibility", "gratuity rules india", "payment of gratuity act", "gratuity tax exemption", "gratuity after 5 years", "gratuity formula for private employees", "how to calculate gratuity", "gratuity limit 2026"],
+    content: `
+      <p>Gratuity is a lump-sum amount that your employer pays you as a reward for your years of service when you leave the company. It is one of the most important retirement benefits for salaried employees in India, yet most people are unaware of how it is calculated, when they become eligible, and how much of it is tax-free. This comprehensive guide covers everything you need to know about gratuity in India for 2026.</p>
+
+      <h2>What is Gratuity?</h2>
+      <p>Gratuity is a monetary benefit given by an employer to an employee who has rendered continuous service of at least <strong>5 years</strong>. It is governed by the <strong>Payment of Gratuity Act, 1972</strong>, which applies to factories, mines, oilfields, plantations, ports, railway companies, and every shop or establishment with 10 or more employees. Even if your company is not covered under the Act, you may still receive gratuity based on your employment contract.</p>
+
+      <h2>Who is Eligible for Gratuity?</h2>
+      <p>To be eligible for gratuity under the Payment of Gratuity Act, you must meet these conditions:</p>
+      <ul>
+        <li><strong>Minimum 5 years of continuous service:</strong> You must have completed at least 4 years and 240 days (or 190 days for seasonal work) in the fifth year. Courts have ruled that 4 years and 240 days count as 5 years.</li>
+        <li><strong>Applicable events:</strong> Gratuity is payable on superannuation (retirement), resignation after 5 years, death, or disablement due to accident or disease.</li>
+        <li><strong>Exception for death/disability:</strong> If an employee dies or becomes disabled, gratuity is payable even if they have not completed 5 years of service.</li>
+      </ul>
+      <p>Use the <a href="/tools/gratuity-calculator">Gratuity Calculator</a> to instantly compute your gratuity amount based on your salary and years of service.</p>
+
+      <h2>Gratuity Calculation Formula</h2>
+      <p>The formula differs based on whether your company is covered under the Payment of Gratuity Act or not.</p>
+
+      <h3>Formula for Employees Covered Under the Act</h3>
+      <p><strong>Gratuity = (Last Drawn Salary x 15 x Years of Service) / 26</strong></p>
+      <ul>
+        <li><strong>Last Drawn Salary</strong> = Basic Salary + Dearness Allowance (DA)</li>
+        <li><strong>15</strong> = 15 days of wages for every completed year of service</li>
+        <li><strong>26</strong> = Working days in a month (as per the Act)</li>
+        <li><strong>Years of Service</strong> = Completed years (service of more than 6 months in the last year is rounded up)</li>
+      </ul>
+
+      <h3>Formula for Employees NOT Covered Under the Act</h3>
+      <p><strong>Gratuity = (Last Drawn Salary x 15 x Years of Service) / 30</strong></p>
+      <p>The only difference is the denominator: 30 (calendar days) instead of 26 (working days). This means the gratuity amount is slightly lower for employees not covered under the Act.</p>
+
+      <h2>Gratuity Calculation Examples</h2>
+
+      <h3>Example 1: Employee Covered Under the Act</h3>
+      <p>Rahul has worked at a manufacturing company for 12 years. His last drawn Basic Salary is Rs 45,000 and DA is Rs 10,000.</p>
+      <ul>
+        <li>Last Drawn Salary = Rs 45,000 + Rs 10,000 = Rs 55,000</li>
+        <li>Gratuity = (55,000 x 15 x 12) / 26</li>
+        <li>Gratuity = 99,00,000 / 26</li>
+        <li><strong>Gratuity = Rs 3,80,769</strong></li>
+      </ul>
+
+      <h3>Example 2: Employee NOT Covered Under the Act</h3>
+      <p>Priya works at a private IT firm (not covered under the Act) for 8 years. Her last drawn Basic + DA is Rs 70,000.</p>
+      <ul>
+        <li>Gratuity = (70,000 x 15 x 8) / 30</li>
+        <li>Gratuity = 84,00,000 / 30</li>
+        <li><strong>Gratuity = Rs 2,80,000</strong></li>
+      </ul>
+      <p>If Priya were covered under the Act, her gratuity would be Rs 3,23,077 — about Rs 43,000 more. Check your own numbers with the <a href="/tools/gratuity-calculator">Gratuity Calculator</a>.</p>
+
+      <h2>Maximum Gratuity Limit in 2026</h2>
+      <p>The government has set a <strong>maximum gratuity limit of Rs 25 lakh</strong> (revised from Rs 20 lakh in 2024). This means even if the formula gives you a higher amount, the employer is only legally required to pay Rs 25 lakh. However, many private companies pay gratuity above this limit as part of their HR policy.</p>
+
+      <h2>Tax Exemption on Gratuity</h2>
+      <p>The tax treatment of gratuity depends on whether you are a government or private employee:</p>
+      <ul>
+        <li><strong>Government employees:</strong> Gratuity is fully exempt from income tax under Section 10(10)(i).</li>
+        <li><strong>Private employees covered under the Act:</strong> The least of these three is exempt: (a) Rs 25 lakh, (b) 15 days salary per year of service (calculated using last drawn salary / 26), or (c) Actual gratuity received.</li>
+        <li><strong>Private employees NOT covered under the Act:</strong> The least of these three is exempt: (a) Rs 25 lakh, (b) Half month salary per year of service (calculated using average salary of last 10 months / 2), or (c) Actual gratuity received.</li>
+      </ul>
+      <p>Any amount above the exemption limit is taxable as "Income from Salary." Use a <a href="/tools/income-tax-calculator">Income Tax Calculator</a> to estimate your tax liability on the taxable portion.</p>
+
+      <h2>Important Rules to Remember</h2>
+      <ul>
+        <li><strong>Forfeiture:</strong> An employer can forfeit gratuity partially or fully if an employee is terminated for misconduct involving moral turpitude, such as theft, fraud, or violence during employment.</li>
+        <li><strong>Nomination:</strong> Every employee must file a nomination form (Form F) specifying who should receive the gratuity in case of the employee's death.</li>
+        <li><strong>Payment timeline:</strong> The employer must pay gratuity within 30 days of it becoming payable. Delay attracts simple interest at the rate notified by the government.</li>
+        <li><strong>No deduction from salary:</strong> Gratuity is entirely funded by the employer. No amount can be deducted from the employee's salary for gratuity.</li>
+      </ul>
+
+      <h2>Frequently Asked Questions</h2>
+      <p><strong>Q: Is gratuity applicable to contract employees?</strong></p>
+      <p>Yes, if a contract employee has completed 5 years of continuous service with the same employer, they are eligible for gratuity. The Supreme Court has upheld this in multiple judgments. The nature of employment (permanent or contractual) does not affect gratuity eligibility.</p>
+      <p><strong>Q: What happens to gratuity if I change jobs before 5 years?</strong></p>
+      <p>Unfortunately, you forfeit the gratuity if you leave before completing 5 years. The gratuity clock resets at your new employer. This is why many financial advisors recommend staying at least 5 years to secure your gratuity benefit.</p>
+      <p><strong>Q: Is gratuity included in CTC?</strong></p>
+      <p>Yes, most companies include gratuity as part of the CTC (Cost to Company). Typically, the gratuity component in CTC is calculated as 4.81% of Basic Salary (which equals Basic x 15/26/12). Use the <a href="/tools/ctc-to-in-hand-salary-calculator">CTC to In-Hand Salary Calculator</a> to understand your complete salary breakup.</p>
+      <p><strong>Q: Can I receive gratuity from multiple employers?</strong></p>
+      <p>Yes. The Rs 25 lakh tax exemption limit applies to the total gratuity received from all employers during your lifetime. If you have already claimed exemption on Rs 15 lakh from a previous employer, you can only claim exemption on Rs 10 lakh from the next employer.</p>
+    `,
+  },
+  {
+    slug: "age-calculator-guide-government-forms-india",
+    title: "Complete Guide to Age Calculator — How to Calculate Exact Age for Government Forms in India",
+    description: "Learn how to calculate your exact age in years, months, and days for government jobs, passport applications, Aadhaar, and competitive exams. Includes age relaxation rules for SC/ST/OBC.",
+    date: "2026-03-26",
+    category: "Utility",
+    readTime: "8 min read",
+    keywords: ["age calculator", "calculate exact age", "age for government job", "age limit for ssc", "age relaxation sc st obc", "age calculator for passport", "retirement age india", "age limit upsc", "exact age in years months days", "age calculation for competitive exams"],
+    content: `
+      <p>Calculating your exact age might sound simple, but when it comes to filling government forms in India — whether for UPSC, SSC, railway jobs, passport applications, or Aadhaar enrollment — getting your age right down to the exact day is absolutely critical. A mistake of even one day can lead to application rejection. This guide explains how to calculate your precise age and covers all the important age-related rules for various Indian government processes.</p>
+
+      <h2>Why Does Exact Age Matter in India?</h2>
+      <p>In India, almost every government process has strict age criteria. Here are the key reasons why you need to know your exact age:</p>
+      <ul>
+        <li><strong>Government job applications:</strong> UPSC, SSC, Banking, Railways — all have strict upper and lower age limits calculated as on a specific cutoff date.</li>
+        <li><strong>Passport application:</strong> Age determines which form to use (minors vs adults), the validity period (5 years for under-18, 10 years for adults), and the required documents.</li>
+        <li><strong>Aadhaar enrollment:</strong> Children under 5 get a Baal Aadhaar (blue card) that needs mandatory biometric update at ages 5 and 15.</li>
+        <li><strong>School and college admissions:</strong> Many schools have strict cutoff dates (e.g., child must be 6 years old by March 31 for Class 1 admission).</li>
+        <li><strong>Voter ID registration:</strong> You must be 18 years old as on January 1 of the year of revision of the electoral roll.</li>
+        <li><strong>Senior citizen benefits:</strong> Tax benefits, railway concessions, and health schemes kick in at 60 or 65 years.</li>
+      </ul>
+      <p>Use the <a href="/tools/age-calculator">Age Calculator</a> to instantly find your exact age in years, months, and days as on any specific date.</p>
+
+      <h2>How to Calculate Exact Age</h2>
+      <p>The standard method to calculate age in India follows this approach:</p>
+      <ul>
+        <li><strong>Step 1:</strong> Note your date of birth (as per birth certificate or school leaving certificate).</li>
+        <li><strong>Step 2:</strong> Note the cutoff date or reference date (e.g., for UPSC 2026, the cutoff is August 1, 2026).</li>
+        <li><strong>Step 3:</strong> Calculate the difference in years, months, and days.</li>
+      </ul>
+
+      <h3>Example Calculation</h3>
+      <p>Date of Birth: 15th July 1996. Cutoff Date: 1st August 2026.</p>
+      <ul>
+        <li>Years: 2026 - 1996 = 30 years</li>
+        <li>Months: August (8) - July (7) = 0 months (since we are on the 1st and DOB is 15th, it is actually 0 months and 17 days)</li>
+        <li><strong>Exact age = 30 years, 0 months, 17 days</strong></li>
+      </ul>
+      <p>Rather than doing this manually (and risking errors with varying month lengths and leap years), use the <a href="/tools/age-calculator">Age Calculator</a> for instant, accurate results.</p>
+
+      <h2>Age Limits for Major Government Exams</h2>
+      <p>Here are the current age limits for popular government examinations in India (2026):</p>
+
+      <h3>UPSC Civil Services (IAS/IPS/IFS)</h3>
+      <ul>
+        <li><strong>Minimum age:</strong> 21 years</li>
+        <li><strong>Maximum age (General):</strong> 32 years</li>
+        <li><strong>OBC:</strong> 35 years (3 years relaxation)</li>
+        <li><strong>SC/ST:</strong> 37 years (5 years relaxation)</li>
+        <li><strong>PwBD General:</strong> 42 years (10 years relaxation)</li>
+        <li><strong>Cutoff date:</strong> August 1 of the exam year</li>
+      </ul>
+
+      <h3>SSC CGL (Combined Graduate Level)</h3>
+      <ul>
+        <li><strong>Group B posts:</strong> 20-30 years (General)</li>
+        <li><strong>Group C posts:</strong> 18-27 years (General)</li>
+        <li><strong>OBC relaxation:</strong> 3 years</li>
+        <li><strong>SC/ST relaxation:</strong> 5 years</li>
+        <li><strong>Ex-servicemen:</strong> 3 years after deduction of military service</li>
+      </ul>
+
+      <h3>IBPS Bank PO/Clerk</h3>
+      <ul>
+        <li><strong>PO:</strong> 20-30 years (General)</li>
+        <li><strong>Clerk:</strong> 20-28 years (General)</li>
+        <li><strong>OBC relaxation:</strong> 3 years</li>
+        <li><strong>SC/ST relaxation:</strong> 5 years</li>
+      </ul>
+
+      <h3>Indian Railways (RRB NTPC/Group D)</h3>
+      <ul>
+        <li><strong>NTPC:</strong> 18-33 years (General, varies by post)</li>
+        <li><strong>Group D:</strong> 18-33 years (General)</li>
+        <li><strong>OBC relaxation:</strong> 3 years</li>
+        <li><strong>SC/ST relaxation:</strong> 5 years</li>
+      </ul>
+
+      <h2>Age Relaxation Rules for Reserved Categories</h2>
+      <p>The Indian government provides age relaxation to ensure equal opportunity for underprivileged sections:</p>
+      <ul>
+        <li><strong>OBC (Non-Creamy Layer):</strong> 3 years relaxation in upper age limit for most central government posts.</li>
+        <li><strong>SC/ST:</strong> 5 years relaxation in upper age limit.</li>
+        <li><strong>PwBD (Persons with Benchmark Disabilities):</strong> 10 years for General, 13 years for OBC, 15 years for SC/ST.</li>
+        <li><strong>Ex-Servicemen:</strong> 3 years after deduction of military service rendered (varies by post).</li>
+        <li><strong>Widows/Divorced Women:</strong> Up to 35 years for General, 38 for OBC, 40 for SC/ST (for certain posts).</li>
+        <li><strong>J&K Domicile:</strong> 5 years relaxation (for posts notified before 2019 reorganization, some states continue to offer similar benefits).</li>
+      </ul>
+
+      <h2>Retirement Age in India (2026)</h2>
+      <p>Knowing the retirement age is equally important for financial planning:</p>
+      <ul>
+        <li><strong>Central Government employees:</strong> 60 years</li>
+        <li><strong>State Government employees:</strong> 58-62 years (varies by state — for example, Tamil Nadu is 60, some states have raised it to 62)</li>
+        <li><strong>Judges of High Court:</strong> 62 years</li>
+        <li><strong>Judges of Supreme Court:</strong> 65 years</li>
+        <li><strong>Private sector:</strong> No fixed retirement age; typically 58-60 as per company policy</li>
+        <li><strong>EPFO pension eligibility:</strong> 58 years (early pension at 50 with reduced benefits)</li>
+      </ul>
+      <p>Plan your retirement finances using the <a href="/tools/epf-calculator">EPF Calculator</a> to estimate your provident fund corpus at retirement.</p>
+
+      <h2>Age Requirements for Common Government Services</h2>
+      <ul>
+        <li><strong>Passport (minor):</strong> Below 18 years — validity 5 years, no police verification needed</li>
+        <li><strong>Passport (adult):</strong> 18 years and above — validity 10 years</li>
+        <li><strong>Driving License (non-geared vehicles):</strong> 16 years</li>
+        <li><strong>Driving License (geared vehicles):</strong> 18 years</li>
+        <li><strong>PAN Card:</strong> No minimum age (minors can apply through representatives)</li>
+        <li><strong>Voter ID:</strong> 18 years as on January 1 of the year</li>
+        <li><strong>Marriage (male):</strong> 21 years</li>
+        <li><strong>Marriage (female):</strong> 18 years</li>
+        <li><strong>Senior Citizen tax benefit:</strong> 60 years (super senior citizen at 80 years)</li>
+      </ul>
+
+      <h2>Frequently Asked Questions</h2>
+      <p><strong>Q: Which document is valid for age proof in government exams?</strong></p>
+      <p>The most commonly accepted documents are: (1) Class 10 / Matriculation certificate, (2) Birth certificate issued by Municipal Corporation, (3) Aadhaar card (accepted by some, but not all recruitment bodies). For UPSC and SSC, the Class 10 certificate is the primary age proof document.</p>
+      <p><strong>Q: What if my age differs across different documents?</strong></p>
+      <p>If there is a discrepancy, the date of birth recorded in your Class 10 or Matriculation certificate is considered final for most government exams and jobs. To correct it in Aadhaar or other documents, you need to provide the matriculation certificate as supporting proof.</p>
+      <p><strong>Q: Can I apply for a government job if I turn overage by one day?</strong></p>
+      <p>No. Government recruitment is extremely strict about age limits. Even one day over the cutoff makes you ineligible. This is why calculating your exact age using the <a href="/tools/age-calculator">Age Calculator</a> is so important before submitting any application.</p>
+      <p><strong>Q: Does age relaxation apply to state government exams as well?</strong></p>
+      <p>Age relaxation rules vary by state. Central government rules apply to central exams (UPSC, SSC, IBPS). State PSCs and state-level recruitment have their own relaxation policies, which may be more or less generous than the central rules.</p>
+    `,
+  },
+  {
+    slug: "percentage-calculator-marks-discount-gst-india",
+    title: "Percentage Calculator — How to Calculate Percentage of Marks, Discounts & GST in India",
+    description: "Master percentage calculations with easy formulas and Indian examples. Learn to calculate marks percentage, GST percentage, discount percentage, salary hike percentage, and more.",
+    date: "2026-03-26",
+    category: "Education",
+    readTime: "8 min read",
+    keywords: ["percentage calculator", "how to calculate percentage", "percentage of marks", "percentage formula", "gst percentage calculation", "discount percentage", "salary hike percentage", "cgpa to percentage", "percentage increase calculator", "percentage decrease formula"],
+    content: `
+      <p>Percentage is one of the most frequently used mathematical concepts in daily life in India — from calculating your exam marks and salary hike to figuring out GST on purchases and discounts during Diwali sales. Despite being taught in school, many people struggle with percentage calculations when they need them in real situations. This guide covers every common percentage scenario with simple formulas and practical Indian examples.</p>
+
+      <h2>The Basic Percentage Formula</h2>
+      <p>The fundamental formula to calculate percentage is:</p>
+      <p><strong>Percentage = (Value / Total Value) x 100</strong></p>
+      <p>For example, if you scored 420 marks out of 500, your percentage is (420/500) x 100 = <strong>84%</strong>.</p>
+      <p>Use the <a href="/tools/percentage-calculator">Percentage Calculator</a> to instantly compute any percentage calculation without manual math.</p>
+
+      <h2>How to Calculate Percentage of Marks</h2>
+      <p>This is the most common percentage calculation for Indian students, especially during board exam results.</p>
+
+      <h3>Formula: Marks Percentage</h3>
+      <p><strong>Percentage = (Total Marks Obtained / Maximum Marks) x 100</strong></p>
+
+      <h3>Example: CBSE Class 12 Results</h3>
+      <p>Anika scored the following marks in her CBSE Class 12 exams:</p>
+      <ul>
+        <li>English: 88/100</li>
+        <li>Mathematics: 95/100</li>
+        <li>Physics: 78/100</li>
+        <li>Chemistry: 82/100</li>
+        <li>Computer Science: 91/100</li>
+      </ul>
+      <p>Total marks obtained = 88 + 95 + 78 + 82 + 91 = 434</p>
+      <p>Maximum marks = 500</p>
+      <p>Percentage = (434/500) x 100 = <strong>86.8%</strong></p>
+
+      <h3>CGPA to Percentage Conversion</h3>
+      <p>Many universities in India use CGPA (Cumulative Grade Point Average) instead of percentage. The common conversion formulas are:</p>
+      <ul>
+        <li><strong>CBSE (Class 10):</strong> Percentage = CGPA x 9.5 (e.g., CGPA 8.6 = 81.7%)</li>
+        <li><strong>Mumbai University:</strong> Percentage = (CGPA - 0.75) x 10 (e.g., CGPA 7.5 = 67.5%)</li>
+        <li><strong>VTU:</strong> Percentage = (CGPA - 0.75) x 10</li>
+        <li><strong>Anna University:</strong> Percentage = CGPA x 10 (approximate)</li>
+      </ul>
+      <p>For accurate conversions specific to your university, use the <a href="/tools/cgpa-to-percentage-converter">CGPA to Percentage Converter</a>.</p>
+
+      <h2>How to Calculate GST Percentage</h2>
+      <p>Understanding GST calculation is essential for every Indian consumer and business owner.</p>
+
+      <h3>Calculating GST on a Product</h3>
+      <p><strong>GST Amount = (Original Price x GST Rate) / 100</strong></p>
+      <p><strong>Final Price = Original Price + GST Amount</strong></p>
+
+      <h3>Example: GST on Electronics</h3>
+      <p>You are buying a smartphone priced at Rs 25,000 (before GST). The GST rate on smartphones is 18%.</p>
+      <ul>
+        <li>GST Amount = (25,000 x 18) / 100 = Rs 4,500</li>
+        <li>CGST (Central GST) = Rs 2,250 (9%)</li>
+        <li>SGST (State GST) = Rs 2,250 (9%)</li>
+        <li><strong>Final Price = Rs 25,000 + Rs 4,500 = Rs 29,500</strong></li>
+      </ul>
+
+      <h3>Reverse GST Calculation (Finding Original Price)</h3>
+      <p>If you know the GST-inclusive price and want to find the original price:</p>
+      <p><strong>Original Price = GST-Inclusive Price / (1 + GST Rate/100)</strong></p>
+      <p>Example: A bill shows Rs 11,800 inclusive of 18% GST. Original price = 11,800 / 1.18 = Rs 10,000.</p>
+      <p>Use the <a href="/tools/gst-calculator">GST Calculator</a> for instant GST calculations with proper CGST/SGST/IGST breakup.</p>
+
+      <h2>How to Calculate Discount Percentage</h2>
+      <p>During Flipkart Big Billion Days, Amazon Great Indian Festival, or Diwali sales, knowing how to verify discounts helps you spot real deals.</p>
+
+      <h3>Formula: Discount Percentage</h3>
+      <p><strong>Discount % = ((MRP - Selling Price) / MRP) x 100</strong></p>
+
+      <h3>Example: Clothing Sale</h3>
+      <p>A branded shirt has MRP Rs 2,499 and is selling for Rs 1,499.</p>
+      <ul>
+        <li>Discount Amount = Rs 2,499 - Rs 1,499 = Rs 1,000</li>
+        <li>Discount % = (1,000 / 2,499) x 100 = <strong>40.01%</strong></li>
+      </ul>
+
+      <h3>Double Discount / Successive Discounts</h3>
+      <p>Sometimes shops offer "50% + 20% off." This does NOT mean 70% off. Here is how to calculate:</p>
+      <ul>
+        <li>MRP = Rs 5,000</li>
+        <li>First discount (50%): Rs 5,000 - Rs 2,500 = Rs 2,500</li>
+        <li>Second discount (20% on reduced price): Rs 2,500 - Rs 500 = Rs 2,000</li>
+        <li>Effective discount = (5,000 - 2,000) / 5,000 x 100 = <strong>60%</strong> (not 70%!)</li>
+      </ul>
+
+      <h2>How to Calculate Salary Hike Percentage</h2>
+      <p>During appraisal season, every Indian employee wants to know their hike percentage.</p>
+
+      <h3>Formula: Hike Percentage</h3>
+      <p><strong>Hike % = ((New Salary - Old Salary) / Old Salary) x 100</strong></p>
+
+      <h3>Example</h3>
+      <p>Vikram's CTC was Rs 8,00,000 per annum. After appraisal, it became Rs 9,20,000.</p>
+      <ul>
+        <li>Increase = Rs 9,20,000 - Rs 8,00,000 = Rs 1,20,000</li>
+        <li>Hike % = (1,20,000 / 8,00,000) x 100 = <strong>15%</strong></li>
+      </ul>
+      <p>The average salary hike in India for 2026 is projected at 9.5-10.2% across industries. IT sector averages 10-12%, while manufacturing averages 8-9%.</p>
+
+      <h2>Percentage Increase and Decrease Formulas</h2>
+
+      <h3>Percentage Increase</h3>
+      <p><strong>% Increase = ((New Value - Original Value) / Original Value) x 100</strong></p>
+      <p>Example: Petrol price increased from Rs 103 to Rs 108. Increase = ((108-103)/103) x 100 = <strong>4.85%</strong></p>
+
+      <h3>Percentage Decrease</h3>
+      <p><strong>% Decrease = ((Original Value - New Value) / Original Value) x 100</strong></p>
+      <p>Example: A stock fell from Rs 1,500 to Rs 1,275. Decrease = ((1500-1275)/1500) x 100 = <strong>15%</strong></p>
+
+      <h2>Quick Reference: Common GST Rates in India</h2>
+      <ul>
+        <li><strong>0% GST:</strong> Fresh fruits, vegetables, milk, eggs, curd, bread</li>
+        <li><strong>5% GST:</strong> Packaged food items, sugar, tea, edible oil, footwear below Rs 1,000</li>
+        <li><strong>12% GST:</strong> Butter, ghee, mobile phones, apparel above Rs 1,000</li>
+        <li><strong>18% GST:</strong> Electronics, restaurants (non-AC), IT services, financial services</li>
+        <li><strong>28% GST:</strong> Cars, luxury items, aerated drinks, tobacco, cement</li>
+      </ul>
+      <p>Calculate the exact GST for your specific product or service using the <a href="/tools/gst-calculator">GST Calculator</a>.</p>
+
+      <h2>Frequently Asked Questions</h2>
+      <p><strong>Q: How do I calculate what percentage one number is of another?</strong></p>
+      <p>Use the formula: (Part / Whole) x 100. For example, if you spent Rs 15,000 on rent out of a Rs 50,000 salary, rent is (15,000/50,000) x 100 = 30% of your salary. The <a href="/tools/percentage-calculator">Percentage Calculator</a> handles all such calculations instantly.</p>
+      <p><strong>Q: How to find the original price before a discount?</strong></p>
+      <p>Use: Original Price = Sale Price / (1 - Discount%/100). If an item costs Rs 750 after a 25% discount, original price = 750 / (1 - 0.25) = 750 / 0.75 = Rs 1,000.</p>
+      <p><strong>Q: What is the percentage formula for competitive exams?</strong></p>
+      <p>For SSC, Banking, and other competitive exams, the key percentage formulas are: (1) Basic: (Part/Whole) x 100, (2) Successive: a + b + ab/100 for two successive changes a% and b%, (3) Fraction shortcuts: 1/2 = 50%, 1/3 = 33.33%, 1/4 = 25%, 1/5 = 20%, 1/8 = 12.5%. Memorizing these fractions speeds up calculations significantly.</p>
+      <p><strong>Q: How to calculate percentage in Excel?</strong></p>
+      <p>In Excel or Google Sheets, use the formula =A1/B1 and format the cell as Percentage. For example, if A1 contains marks obtained (85) and B1 contains total marks (100), the formula =A1/B1 with percentage formatting will show 85%.</p>
+    `,
+  },
+  {
+    slug: "gold-price-calculator-jewellery-making-charges-gst",
+    title: "Gold Price Calculator 2026 — How to Calculate Gold Jewellery Price, Making Charges & GST",
+    description: "Learn how to calculate the real price of gold jewellery in India including making charges, GST, wastage charges, and the difference between 22K and 24K gold. Avoid overpaying at the jeweller.",
+    date: "2026-03-26",
+    category: "Shopping",
+    readTime: "9 min read",
+    keywords: ["gold price calculator", "gold jewellery price calculation", "gold making charges", "gst on gold", "22k vs 24k gold", "gold rate today", "gold hallmark", "gold wastage charges", "how to buy gold jewellery", "gold price per gram india", "gold ornament price calculator"],
+    content: `
+      <p>Gold is deeply embedded in Indian culture — from weddings and festivals to investments and gifts, Indians buy more gold jewellery than any other country in the world. Yet most buyers step into a jewellery shop without understanding how the final price of a gold ornament is calculated. Making charges, wastage, GST, and the difference between gold karats can add 15-35% to the raw gold price. This guide teaches you exactly how to calculate the true cost of gold jewellery in India so you never overpay.</p>
+
+      <h2>Understanding Gold Purity: 24K vs 22K vs 18K</h2>
+      <p>Gold purity is measured in Karats (K). Pure gold is 24 Karat, but it is too soft for making jewellery. Here is the breakdown:</p>
+      <ul>
+        <li><strong>24K Gold (99.9% pure):</strong> Used for gold coins, bars, and investment. Too soft for jewellery. Current price: approximately Rs 8,800-9,200 per gram (as of March 2026).</li>
+        <li><strong>22K Gold (91.6% pure):</strong> The standard for Indian jewellery. Mixed with 8.4% other metals (copper, silver, zinc) for durability. Price is approximately 91.6% of 24K price.</li>
+        <li><strong>18K Gold (75% pure):</strong> Used for diamond-studded and designer jewellery. More durable but less gold content. Price is approximately 75% of 24K price.</li>
+        <li><strong>14K Gold (58.3% pure):</strong> Common in Western countries but less popular in India. Used in some modern designs.</li>
+      </ul>
+
+      <h3>How to Calculate 22K Price from 24K Price</h3>
+      <p><strong>22K Gold Price per gram = 24K Gold Price per gram x (22/24)</strong></p>
+      <p>Example: If 24K gold is Rs 9,000/gram, then 22K = 9,000 x (22/24) = <strong>Rs 8,250/gram</strong></p>
+
+      <h2>Complete Gold Jewellery Price Formula</h2>
+      <p>The final price you pay at a jewellery shop is calculated as:</p>
+      <p><strong>Final Price = (Gold Weight x Gold Rate per gram) + Making Charges + Wastage Charges + GST (3% on total)</strong></p>
+      <p>Use the <a href="/tools/gold-price-calculator">Gold Price Calculator</a> to compute the exact price based on today's gold rate.</p>
+
+      <h2>Step-by-Step Calculation with Example</h2>
+      <p>Let us calculate the price of a 22K gold necklace weighing 25 grams:</p>
+
+      <h3>Step 1: Calculate Gold Value</h3>
+      <ul>
+        <li>22K Gold rate (today) = Rs 8,250 per gram</li>
+        <li>Gold value = 25 grams x Rs 8,250 = <strong>Rs 2,06,250</strong></li>
+      </ul>
+
+      <h3>Step 2: Add Making Charges</h3>
+      <p>Making charges (also called labour charges) are what the jeweller charges for crafting the ornament. There are two types:</p>
+      <ul>
+        <li><strong>Percentage-based:</strong> Usually 8-25% of gold value (varies by design complexity)</li>
+        <li><strong>Per-gram based:</strong> Fixed amount per gram (e.g., Rs 500-1,500 per gram)</li>
+      </ul>
+      <p>For our example, assuming 12% making charges:</p>
+      <ul>
+        <li>Making charges = Rs 2,06,250 x 12% = <strong>Rs 24,750</strong></li>
+      </ul>
+
+      <h3>Step 3: Add Wastage Charges</h3>
+      <p>Wastage charges account for gold lost during the manufacturing process (filing, polishing, etc.). Typically 3-7% of gold weight.</p>
+      <ul>
+        <li>Wastage at 5% = 25 grams x 5% = 1.25 grams</li>
+        <li>Wastage cost = 1.25 x Rs 8,250 = <strong>Rs 10,312</strong></li>
+      </ul>
+
+      <h3>Step 4: Calculate Sub-Total</h3>
+      <ul>
+        <li>Sub-total = Rs 2,06,250 + Rs 24,750 + Rs 10,312 = <strong>Rs 2,41,312</strong></li>
+      </ul>
+
+      <h3>Step 5: Add GST (3%)</h3>
+      <p>GST on gold jewellery in India is <strong>3%</strong> (1.5% CGST + 1.5% SGST). GST is charged on the total amount including making charges.</p>
+      <ul>
+        <li>GST = Rs 2,41,312 x 3% = <strong>Rs 7,239</strong></li>
+      </ul>
+
+      <h3>Step 6: Final Price</h3>
+      <ul>
+        <li><strong>Total Price = Rs 2,41,312 + Rs 7,239 = Rs 2,48,551</strong></li>
+      </ul>
+      <p>Compare this to the raw gold value of Rs 2,06,250 — you are paying approximately Rs 42,301 (about 20.5%) over the base gold price. This is why understanding the breakup matters!</p>
+
+      <h2>Making Charges: What is Normal?</h2>
+      <p>Making charges vary widely depending on the type of jewellery:</p>
+      <ul>
+        <li><strong>Plain gold bangles/chains:</strong> 8-12% or Rs 400-700 per gram (machine-made designs are cheaper)</li>
+        <li><strong>Standard necklace sets:</strong> 10-15% or Rs 500-1,000 per gram</li>
+        <li><strong>Intricate temple jewellery:</strong> 15-20% or Rs 800-1,200 per gram</li>
+        <li><strong>Antique finish/Kundan work:</strong> 18-25% or Rs 1,000-1,500 per gram</li>
+        <li><strong>Gold coins/bars:</strong> 2-5% (minimal making involved)</li>
+      </ul>
+      <p>Always negotiate making charges — they are the most negotiable part of the jewellery bill. Large jewellery chains like Tanishq, Kalyan, and Malabar Gold often have fixed making charge policies, but smaller local jewellers are more flexible.</p>
+
+      <h2>GST on Gold in India (2026)</h2>
+      <p>Here is the complete GST structure for gold transactions:</p>
+      <ul>
+        <li><strong>Gold jewellery:</strong> 3% GST on total value (gold + making charges)</li>
+        <li><strong>Gold bars and coins:</strong> 3% GST</li>
+        <li><strong>Making charges (if billed separately):</strong> 5% GST on the making charge amount</li>
+        <li><strong>Digital gold:</strong> 3% GST</li>
+        <li><strong>Gold ETFs:</strong> No GST (already factored into NAV)</li>
+      </ul>
+      <p>Calculate the exact GST on your gold purchase using the <a href="/tools/gst-calculator">GST Calculator</a>.</p>
+
+      <h2>Why Hallmarking is Crucial</h2>
+      <p>Since June 2021, hallmarking has been <strong>mandatory</strong> for gold jewellery sold in India. The BIS (Bureau of Indian Standards) hallmark guarantees:</p>
+      <ul>
+        <li><strong>Purity certification:</strong> The gold is actually the karat it claims to be</li>
+        <li><strong>HUID number:</strong> A unique 6-digit alphanumeric Hallmark Unique Identification number that can be verified on the BIS website</li>
+        <li><strong>Assaying centre mark:</strong> Identifies which BIS-approved lab tested the gold</li>
+      </ul>
+      <p>Always buy hallmarked gold jewellery. You can verify any HUID number at the BIS Care app or website. Non-hallmarked gold can have 10-15% lower purity than claimed, meaning you could lose Rs 15,000-20,000 on a Rs 1 lakh purchase.</p>
+
+      <h2>Tips to Get the Best Price on Gold Jewellery</h2>
+      <ul>
+        <li><strong>Compare gold rates:</strong> Check rates from multiple jewellers. Rates can differ by Rs 100-300 per gram between shops on the same day.</li>
+        <li><strong>Buy during Akshaya Tritiya or Dhanteras:</strong> Many jewellers offer discounts on making charges during auspicious days.</li>
+        <li><strong>Choose simple designs:</strong> Complex designs have 2-3x higher making charges but may not hold proportionally higher resale value.</li>
+        <li><strong>Negotiate making charges:</strong> Always ask for a discount on making charges, especially for purchases above Rs 1 lakh. A reduction from 15% to 10% on a 30-gram necklace at Rs 8,250/gram saves Rs 12,375.</li>
+        <li><strong>Gold exchange schemes:</strong> Many jewellers offer schemes where old gold is exchanged at current rates. Check if they deduct melting charges (typically 2-4%).</li>
+        <li><strong>Check the weight yourself:</strong> Insist on seeing the ornament weighed on an electronic scale in front of you.</li>
+        <li><strong>Keep bills safe:</strong> Original bills are essential for resale, exchange, or insurance claims.</li>
+      </ul>
+
+      <h2>Gold Jewellery vs Gold Investment</h2>
+      <p>If your goal is investment rather than wearing jewellery, consider these alternatives that avoid making charges:</p>
+      <ul>
+        <li><strong>Sovereign Gold Bonds (SGBs):</strong> Issued by RBI, offer 2.5% annual interest plus gold price appreciation. No GST, no making charges, no storage issues. Tax-free on redemption at maturity.</li>
+        <li><strong>Gold ETFs:</strong> Trade on stock exchanges like GOLDBEES. Low expense ratio of 0.5-1%. Highly liquid.</li>
+        <li><strong>Digital Gold:</strong> Buy from Rs 1 onwards through apps like PhonePe, Google Pay, or Paytm. 3% GST applies. Can be converted to physical gold.</li>
+        <li><strong>Gold Coins/Bars:</strong> 3% GST, 2-5% making charges. Better for investment than jewellery but still not as efficient as SGBs or ETFs.</li>
+      </ul>
+
+      <h2>Frequently Asked Questions</h2>
+      <p><strong>Q: Do I get full value when I sell old gold jewellery?</strong></p>
+      <p>No. When you sell old gold, you typically get only the gold value (weight x current rate for the purity). Making charges are completely lost. Most jewellers also deduct 2-4% for melting/testing. If you bought a necklace for Rs 2,48,000, the resale value might be around Rs 2,00,000-2,10,000 — a loss of Rs 38,000-48,000 from day one.</p>
+      <p><strong>Q: How to verify if gold is 22K without hallmark?</strong></p>
+      <p>You can get gold tested at any BIS-approved Assaying and Hallmarking Centre. The test costs Rs 200-500 per item. You can also use the Karatmeter (X-ray fluorescence machine) available at major jewellers — it gives results in seconds without damaging the ornament.</p>
+      <p><strong>Q: Is making charge refundable when exchanging gold?</strong></p>
+      <p>Generally, no. When you exchange old gold for new jewellery, the jeweller only values the gold weight and purity. The making charges from the old purchase are lost, and you pay fresh making charges on the new ornament. Some jewellers like Tanishq offer partial making charge credit on exchange within their loyalty program.</p>
+      <p><strong>Q: What is the difference between making charges and wastage charges?</strong></p>
+      <p>Making charges are the labour cost for crafting the ornament. Wastage charges cover gold lost during manufacturing (cutting, filing, polishing). Some jewellers combine both into a single "making charge" percentage, while others list them separately. Always ask for a detailed breakup. Use the <a href="/tools/gold-price-calculator">Gold Price Calculator</a> to understand the total cost before visiting the shop.</p>
+    `,
+  },
 ];
 
 export function getAllPosts(): BlogPost[] {

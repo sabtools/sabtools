@@ -7,6 +7,7 @@ import EmbedCode from "@/components/EmbedCode";
 import ToolFaq from "@/components/ToolFaq";
 import TrackToolVisit from "@/components/TrackToolVisit";
 import FavoriteButton from "@/components/FavoriteButton";
+import DownloadPDF from "@/components/DownloadPDF";
 import type { Tool } from "@/lib/tools";
 import { categories } from "@/lib/tools";
 
@@ -77,6 +78,7 @@ export default function ToolPageLayout({ tool, children }: ToolPageLayoutProps) 
             </div>
             <div className="flex items-center gap-2">
               <FavoriteButton slug={tool.slug} />
+              <DownloadPDF />
               <ShareButtons title={`${tool.name} - Free Online Tool | SabTools.in`} />
             </div>
           </div>

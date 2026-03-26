@@ -97,6 +97,25 @@ export default function InstallPrompt() {
     };
   }, []);
 
+  // Push page content down when bookmark banner is visible
+  useEffect(() => {
+    if (bookmarkVisible) {
+      document.body.style.paddingTop = "40px";
+      // Also shift the sticky header down
+      const header = document.querySelector("header");
+      if (header) (header as HTMLElement).style.top = "40px";
+    } else {
+      document.body.style.paddingTop = "";
+      const header = document.querySelector("header");
+      if (header) (header as HTMLElement).style.top = "0";
+    }
+    return () => {
+      document.body.style.paddingTop = "";
+      const header = document.querySelector("header");
+      if (header) (header as HTMLElement).style.top = "0";
+    };
+  }, [bookmarkVisible]);
+
   const handleInstall = useCallback(async () => {
     if (deferredPrompt) {
       await deferredPrompt.prompt();
@@ -120,6 +139,9 @@ export default function InstallPrompt() {
   const dismissBookmark = useCallback(() => {
     dismiss(BOOKMARK_DISMISS_KEY);
     setBookmarkVisible(false);
+    document.body.style.paddingTop = "";
+    const header = document.querySelector("header");
+    if (header) (header as HTMLElement).style.top = "0";
     setTimeout(() => setShowBookmark(false), 300);
   }, []);
 
@@ -196,7 +218,8 @@ export default function InstallPrompt() {
       {/* Bookmark Reminder - top banner for desktop */}
       {showBookmark && (
         <div
-          className={`fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-out ${
+          id="bookmark-banner"
+          className={`fixed top-0 left-0 right-0 z-[60] transition-transform duration-300 ease-out ${
             bookmarkVisible ? "translate-y-0" : "-translate-y-full"
           }`}
         >
