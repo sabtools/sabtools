@@ -116,6 +116,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="google-adsense-account" content="ca-pub-XXXXXXXXXXXXXXXX" />
       </head>
       <body className="min-h-screen flex flex-col">
+        {/* Google Tag Manager (noscript) */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-5XH5NJPZ"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         <GoogleAnalytics />
         <Header />
         <main className="flex-1">{children}</main>
