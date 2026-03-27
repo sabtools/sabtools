@@ -233,8 +233,175 @@ const INITIAL_MESSAGE: Message = {
   text: "Hi! I'm SabTools Assistant. Ask me anything like 'how to calculate EMI' or 'I need a PDF tool' and I'll find the right tool for you!",
 };
 
-function findMatch(input: string): { response: string; tool: string; name: string } | null {
-  const lower = input.toLowerCase();
+// Common greetings and conversational patterns
+const greetings: Record<string, string> = {
+  "hi": "Hi there! I'm SabTools Assistant. How can I help you today? You can ask me about any calculator, converter, or tool!",
+  "hello": "Hello! Welcome to SabTools. Ask me anything — like 'calculate EMI', 'compress image', 'convert PDF', or 'check BMI'!",
+  "hey": "Hey! I'm here to help you find the right tool. What do you need? Try asking about loans, tax, images, PDFs, or any calculation!",
+  "good morning": "Good morning! How can I help you today? I know about 400+ free tools!",
+  "good evening": "Good evening! Need help finding a tool? Just ask!",
+  "good night": "Good night! Before you go, need any tool? Maybe our Sleep Calculator to find your perfect bedtime?",
+  "thanks": "You're welcome! Let me know if you need anything else.",
+  "thank you": "Happy to help! Ask me anytime you need a tool.",
+  "bye": "Bye! Come back anytime. All 400+ tools are always free!",
+  "ok": "Need anything else? Try asking about EMI, SIP, GST, image tools, PDF tools, or any calculator!",
+  "help": "I can help you find any tool on SabTools! Try asking:\n• 'How to calculate EMI?'\n• 'I need to compress an image'\n• 'Convert PDF to Word'\n• 'Calculate my BMI'\n• 'Check my salary'\n• 'Generate a password'",
+  "what can you do": "I can help you find the perfect tool from our 400+ collection! Ask me about:\n• Financial calculators (EMI, SIP, GST, Tax)\n• Health tools (BMI, Calorie, Sleep)\n• Image tools (Compress, Resize, Background Remove)\n• PDF tools (Merge, Split, Convert)\n• Text tools (Word Count, Case Convert)\n• And much more!",
+  "who are you": "I'm SabTools Assistant — your guide to 400+ free online tools! Ask me about any calculator, converter, or tool you need.",
+};
+
+// General topic patterns for broader matching
+const topicPatterns: { keywords: string[]; response: string; suggestions: { tool: string; name: string }[] }[] = [
+  {
+    keywords: ["loan", "borrow", "lending", "emi"],
+    response: "We have several loan calculators! Here are the most popular ones:",
+    suggestions: [
+      { tool: "emi-calculator", name: "EMI Calculator" },
+      { tool: "home-loan-calculator", name: "Home Loan Calculator" },
+      { tool: "car-loan-calculator", name: "Car Loan Calculator" },
+      { tool: "loan-eligibility-calculator", name: "Loan Eligibility Calculator" },
+    ],
+  },
+  {
+    keywords: ["invest", "money grow", "wealth", "saving", "returns"],
+    response: "Here are our investment calculators:",
+    suggestions: [
+      { tool: "sip-calculator", name: "SIP Calculator" },
+      { tool: "fd-calculator", name: "FD Calculator" },
+      { tool: "ppf-calculator", name: "PPF Calculator" },
+      { tool: "lumpsum-calculator", name: "Lumpsum Calculator" },
+    ],
+  },
+  {
+    keywords: ["tax", "income tax", "itr", "80c", "deduction", "save tax"],
+    response: "Here are our tax-related tools:",
+    suggestions: [
+      { tool: "income-tax-calculator", name: "Income Tax Calculator" },
+      { tool: "hra-calculator", name: "HRA Calculator" },
+      { tool: "tds-calculator", name: "TDS Calculator" },
+      { tool: "elss-tax-calculator", name: "ELSS Tax Calculator" },
+    ],
+  },
+  {
+    keywords: ["image", "photo", "picture", "jpg", "png"],
+    response: "We have lots of image tools! Here are the popular ones:",
+    suggestions: [
+      { tool: "image-compressor", name: "Image Compressor" },
+      { tool: "image-resizer", name: "Image Resizer" },
+      { tool: "background-remover", name: "Background Remover" },
+      { tool: "passport-photo-maker", name: "Passport Photo Maker" },
+    ],
+  },
+  {
+    keywords: ["pdf", "document", "file"],
+    response: "Here are our PDF tools:",
+    suggestions: [
+      { tool: "merge-pdf", name: "Merge PDF" },
+      { tool: "split-pdf", name: "Split PDF" },
+      { tool: "compress-pdf", name: "Compress PDF" },
+      { tool: "image-to-pdf", name: "Image to PDF" },
+    ],
+  },
+  {
+    keywords: ["health", "fitness", "body", "weight", "diet"],
+    response: "Check out our health calculators:",
+    suggestions: [
+      { tool: "bmi-calculator", name: "BMI Calculator" },
+      { tool: "calorie-calculator", name: "Calorie Calculator" },
+      { tool: "sleep-calculator", name: "Sleep Calculator" },
+      { tool: "pregnancy-calculator", name: "Pregnancy Calculator" },
+    ],
+  },
+  {
+    keywords: ["student", "study", "exam", "marks", "grade", "college", "school"],
+    response: "Here are tools for students:",
+    suggestions: [
+      { tool: "scientific-calculator", name: "Scientific Calculator" },
+      { tool: "cgpa-to-percentage", name: "CGPA to Percentage" },
+      { tool: "percentage-calculator", name: "Percentage Calculator" },
+      { tool: "gpa-calculator", name: "GPA Calculator" },
+    ],
+  },
+  {
+    keywords: ["text", "write", "writing", "content"],
+    response: "Here are our text and writing tools:",
+    suggestions: [
+      { tool: "word-counter", name: "Word Counter" },
+      { tool: "case-converter", name: "Case Converter" },
+      { tool: "ai-essay-writer", name: "AI Essay Writer" },
+      { tool: "ai-email-writer", name: "AI Email Writer" },
+    ],
+  },
+  {
+    keywords: ["convert", "converter", "conversion", "unit"],
+    response: "We have many converters! Here are the popular ones:",
+    suggestions: [
+      { tool: "currency-converter", name: "Currency Converter" },
+      { tool: "length-converter", name: "Length Converter" },
+      { tool: "weight-converter", name: "Weight Converter" },
+      { tool: "temperature-converter", name: "Temperature Converter" },
+    ],
+  },
+  {
+    keywords: ["salary", "pay", "income", "ctc", "package"],
+    response: "Here are our salary-related tools:",
+    suggestions: [
+      { tool: "salary-calculator", name: "Salary Calculator (CTC to In-Hand)" },
+      { tool: "salary-hike-calculator", name: "Salary Hike Calculator" },
+      { tool: "income-tax-calculator", name: "Income Tax Calculator" },
+      { tool: "gratuity-calculator", name: "Gratuity Calculator" },
+    ],
+  },
+  {
+    keywords: ["security", "password", "safe", "protect"],
+    response: "Here are our security tools:",
+    suggestions: [
+      { tool: "password-generator", name: "Password Generator" },
+      { tool: "password-strength-checker", name: "Password Strength Checker" },
+      { tool: "aadhaar-validator", name: "Aadhaar Validator" },
+      { tool: "pan-card-validator", name: "PAN Card Validator" },
+    ],
+  },
+  {
+    keywords: ["developer", "coding", "code", "programming", "json", "regex", "api"],
+    response: "Here are tools for developers:",
+    suggestions: [
+      { tool: "json-formatter", name: "JSON Formatter" },
+      { tool: "regex-tester", name: "Regex Tester" },
+      { tool: "base64-encoder-decoder", name: "Base64 Encoder/Decoder" },
+      { tool: "color-picker", name: "Color Picker" },
+    ],
+  },
+  {
+    keywords: ["gold", "jewellery", "jewelry", "ornament"],
+    response: "Here are our gold-related tools:",
+    suggestions: [
+      { tool: "gold-price-calculator", name: "Gold Price Calculator" },
+    ],
+  },
+  {
+    keywords: ["property", "house", "flat", "real estate", "rent"],
+    response: "Here are our property-related tools:",
+    suggestions: [
+      { tool: "stamp-duty-calculator", name: "Stamp Duty Calculator" },
+      { tool: "home-loan-calculator", name: "Home Loan Calculator" },
+      { tool: "hra-calculator", name: "HRA Calculator" },
+      { tool: "rent-receipt-generator", name: "Rent Receipt Generator" },
+    ],
+  },
+];
+
+function findMatch(input: string): { response: string; tool: string; name: string; suggestions?: { tool: string; name: string }[] } | null {
+  const lower = input.toLowerCase().trim();
+
+  // Check greetings first
+  for (const [key, response] of Object.entries(greetings)) {
+    if (lower === key || lower.startsWith(key + " ") || lower.startsWith(key + "!") || lower.startsWith(key + ",") || lower === key + "!") {
+      return { response, tool: "", name: "" };
+    }
+  }
+
+  // Check exact keyword patterns (original behavior)
   for (const pattern of patterns) {
     for (const keyword of pattern.keywords) {
       if (lower.includes(keyword)) {
@@ -242,6 +409,28 @@ function findMatch(input: string): { response: string; tool: string; name: strin
       }
     }
   }
+
+  // Check broad topic patterns (new - suggests multiple tools)
+  for (const topic of topicPatterns) {
+    for (const keyword of topic.keywords) {
+      if (lower.includes(keyword)) {
+        return { response: topic.response, tool: topic.suggestions[0].tool, name: topic.suggestions[0].name, suggestions: topic.suggestions };
+      }
+    }
+  }
+
+  // Smart fallback - try to match individual words
+  const words = lower.split(/\s+/).filter(w => w.length > 3);
+  for (const word of words) {
+    for (const pattern of patterns) {
+      for (const keyword of pattern.keywords) {
+        if (keyword.includes(word) || word.includes(keyword)) {
+          return { response: pattern.response, tool: pattern.tool, name: pattern.name };
+        }
+      }
+    }
+  }
+
   return null;
 }
 
@@ -273,22 +462,34 @@ export default function AskSabTools() {
     const userMsg: Message = { type: "user", text: trimmed };
     const match = findMatch(trimmed);
 
-    let botMsg: Message;
+    const newMessages: Message[] = [userMsg];
+
     if (match) {
-      botMsg = {
+      newMessages.push({
         type: "bot",
         text: match.response,
-        toolSlug: match.tool,
-        toolName: match.name,
-      };
+        toolSlug: match.tool || undefined,
+        toolName: match.name || undefined,
+      });
+      // If there are multiple suggestions, add them as separate messages
+      if (match.suggestions && match.suggestions.length > 1) {
+        match.suggestions.slice(1).forEach((s) => {
+          newMessages.push({
+            type: "bot",
+            text: "",
+            toolSlug: s.tool,
+            toolName: s.name,
+          });
+        });
+      }
     } else {
-      botMsg = {
+      newMessages.push({
         type: "bot",
-        text: "I couldn't find a specific tool for that. Try browsing our 400+ tools at sabtools.in or search on the homepage!",
-      };
+        text: "I'm not sure about that, but here are some things you can try:\n\n• Ask about a specific tool: 'EMI calculator', 'image compressor'\n• Ask by topic: 'loan tools', 'tax calculator', 'image tools'\n• Ask how to do something: 'how to calculate GST', 'how to compress PDF'\n\nOr just type 'help' to see all categories!",
+      });
     }
 
-    setMessages((prev) => [...prev, userMsg, botMsg]);
+    setMessages((prev) => [...prev, ...newMessages]);
     setInput("");
   }, [input]);
 
@@ -379,16 +580,18 @@ export default function AskSabTools() {
                   className={`max-w-[85%] px-3 py-2 rounded-2xl text-sm leading-relaxed ${
                     msg.type === "user"
                       ? "bg-indigo-600 text-white rounded-br-md"
+                      : msg.text === "" && msg.toolSlug
+                      ? "bg-transparent py-0 px-0"
                       : "bg-gray-100 text-gray-800 rounded-bl-md"
                   }`}
                 >
-                  <p>{msg.text}</p>
+                  {msg.text && msg.text.split("\n").map((line, j) => (
+                    <p key={j} className={j > 0 ? "mt-1" : ""}>{line}</p>
+                  ))}
                   {msg.toolSlug && (
                     <Link
                       href={`/tools/${msg.toolSlug}`}
-                      className={`inline-flex items-center gap-1 mt-2 font-semibold text-sm ${
-                        msg.type === "user" ? "text-indigo-200" : "text-indigo-600 hover:text-indigo-800"
-                      }`}
+                      className="inline-flex items-center gap-1 mt-1 font-semibold text-sm text-indigo-600 hover:text-indigo-800 bg-indigo-50 px-3 py-1.5 rounded-full hover:bg-indigo-100 transition-colors"
                     >
                       {msg.toolName} &rarr;
                     </Link>
