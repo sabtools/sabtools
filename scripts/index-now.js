@@ -1,10 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 
-const KEY = 'sabtools2026indexnow';
+const KEY = '7abead04d3ac4724bae8ac801d060729';
 const HOST = 'sabtools.in';
 const KEY_LOCATION = `https://${HOST}/${KEY}.txt`;
-const INDEXNOW_ENDPOINT = 'https://api.indexnow.org/indexnow';
+const INDEXNOW_ENDPOINT = 'https://www.bing.com/indexnow';
 const BATCH_SIZE = 100;
 
 async function main() {
