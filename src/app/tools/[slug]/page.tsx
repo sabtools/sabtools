@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { tools, categories } from "@/lib/tools";
 import ToolPageLayout from "@/components/ToolPageLayout";
 import ToolRenderer from "./ToolRenderer";
+import ToolTracker from "@/components/ToolTracker";
 
 export function generateStaticParams() {
   return tools.map((tool) => ({ slug: tool.slug }));
@@ -47,6 +48,7 @@ export default async function ToolPage({ params }: { params: Promise<{ slug: str
 
   return (
     <ToolPageLayout tool={tool}>
+      <ToolTracker toolSlug={tool.slug} toolName={tool.name} />
       <ToolRenderer slug={slug} />
     </ToolPageLayout>
   );

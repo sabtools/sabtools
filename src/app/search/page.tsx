@@ -1,10 +1,11 @@
 "use client";
 
-import { Suspense, useState, useMemo } from "react";
+import { Suspense, useState, useMemo, useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { tools, categories } from "@/lib/tools";
 import ToolCard from "@/components/ToolCard";
+import { trackSearch } from "@/lib/analytics";
 
 export default function SearchPage() {
   return (
@@ -30,6 +31,19 @@ function SearchContent() {
         (t.keywords && t.keywords.some((k: string) => k.toLowerCase().includes(q)))
     );
   }, [query]);
+
+  // Track search events (debounced — fires after user stops typing for 500ms)
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  useEffect(() => {
+    if (!query.trim()) return;
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    debounceRef.current = setTimeout(() => {
+      trackSearch(query.trim(), results.length);
+    }, 500);
+    return () => {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+    };
+  }, [query, results.length]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
