@@ -6,438 +6,115 @@ import Link from "next/link";
 interface Message {
   type: "bot" | "user";
   text: string;
-  toolSlug?: string;
-  toolName?: string;
+  tools?: { slug: string; name: string }[];
 }
 
-interface Pattern {
-  keywords: string[];
-  tool: string;
-  name: string;
-  response: string;
+const GEMINI_API_KEY = "AIzaSyCSIMV-VmC4XODdx8QhsZcxA5e2H3ehLH4";
+
+const SYSTEM_PROMPT = `You are SabTools Assistant — a friendly, helpful AI chatbot for SabTools.in, India's largest free online tools website with 424+ tools.
+
+Your job is to:
+1. Help users find the right tool for their needs
+2. Answer questions about tools, calculations, and general topics related to our tools
+3. Give brief, helpful explanations when users ask "how to" questions
+4. Always recommend relevant SabTools tools when applicable
+
+IMPORTANT RULES:
+- Keep responses SHORT (2-4 sentences max). Be concise and friendly.
+- When recommending tools, include the tool slug in this exact format: [TOOL:tool-slug-here:Tool Name Here]
+- You can recommend multiple tools using multiple [TOOL:slug:name] tags
+- Speak naturally like a helpful human assistant
+- If someone greets you, greet back warmly and ask how you can help
+- Use simple English. Many users are Indian and may not speak perfect English.
+- If asked about pricing — ALL tools are 100% free, no signup needed
+- Don't make up tools that don't exist. Only recommend from the list below.
+- For general knowledge questions unrelated to tools, give a brief answer and suggest a relevant tool if possible
+
+Here are the main tool categories and popular tools (slug | name):
+
+FINANCE: emi-calculator | EMI Calculator, sip-calculator | SIP Calculator, fd-calculator | FD Calculator, ppf-calculator | PPF Calculator, rd-calculator | RD Calculator, income-tax-calculator | Income Tax Calculator, gst-calculator | GST Calculator, salary-calculator | Salary Calculator, hra-calculator | HRA Calculator, gratuity-calculator | Gratuity Calculator, epf-calculator | EPF Calculator, nps-calculator | NPS Calculator, tds-calculator | TDS Calculator, home-loan-calculator | Home Loan Calculator, car-loan-calculator | Car Loan Calculator, education-loan-calculator | Education Loan Calculator, loan-eligibility-calculator | Loan Eligibility Calculator, compound-interest-calculator | Compound Interest Calculator, simple-interest-calculator | Simple Interest Calculator, lumpsum-calculator | Lumpsum Calculator, swp-calculator | SWP Calculator, cagr-calculator | CAGR Calculator, inflation-calculator | Inflation Calculator, roi-calculator | ROI Calculator, mutual-fund-calculator | Mutual Fund Calculator, elss-tax-calculator | ELSS Tax Calculator, sukanya-samriddhi-calculator | Sukanya Samriddhi Calculator, salary-hike-calculator | Salary Hike Calculator, fd-comparison | FD Comparison, discount-calculator | Discount Calculator, split-bill-calculator | Split Bill Calculator
+
+HEALTH: bmi-calculator | BMI Calculator, calorie-calculator | Calorie Calculator, sleep-calculator | Sleep Calculator, pregnancy-calculator | Pregnancy Calculator, bmr-calculator | BMR Calculator, body-fat-calculator | Body Fat Calculator, water-intake-calculator | Water Intake Calculator, blood-alcohol-calculator | Blood Alcohol Calculator
+
+IMAGE: image-compressor | Image Compressor, image-resizer | Image Resizer, image-cropper | Image Cropper, image-format-converter | Image Format Converter, background-remover | Background Remover, passport-photo-maker | Passport Photo Maker, image-watermark | Image Watermark, blur-background | Blur Background, image-to-text | Image to Text (OCR), meme-generator | Meme Generator, qr-code-generator | QR Code Generator
+
+PDF: merge-pdf | Merge PDF, split-pdf | Split PDF, compress-pdf | Compress PDF, image-to-pdf | Image to PDF, pdf-to-word | PDF to Word
+
+TEXT: word-counter | Word Counter, case-converter | Case Converter, lorem-ipsum-generator | Lorem Ipsum Generator, text-to-speech | Text to Speech, speech-to-text | Speech to Text, ai-email-writer | AI Email Writer, ai-essay-writer | AI Essay Writer, ai-story-generator | AI Story Generator, ai-cover-letter-generator | AI Cover Letter Generator, ai-wedding-invitation | AI Wedding Invitation, ai-resume-bullet-points | AI Resume Bullet Points
+
+MATH: percentage-calculator | Percentage Calculator, age-calculator | Age Calculator, scientific-calculator | Scientific Calculator, number-to-words | Number to Words, date-difference-calculator | Date Difference Calculator
+
+STUDENT: cgpa-to-percentage | CGPA to Percentage, gpa-calculator | GPA Calculator, typing-speed-test | Typing Speed Test
+
+DEVELOPER: json-formatter | JSON Formatter, regex-tester | Regex Tester, base64-encoder-decoder | Base64 Encoder/Decoder, color-picker | Color Picker, css-gradient-generator | CSS Gradient Generator, meta-tag-generator | Meta Tag Generator
+
+CONVERTER: currency-converter | Currency Converter, length-converter | Length Converter, weight-converter | Weight Converter, temperature-converter | Temperature Converter
+
+SECURITY: password-generator | Password Generator, password-strength-checker | Password Strength Checker, aadhaar-validator | Aadhaar Validator, pan-card-validator | PAN Card Validator
+
+UTILITY: electricity-bill-calculator | Electricity Bill Calculator, fuel-cost-calculator | Fuel Cost Calculator, gold-price-calculator | Gold Price Calculator, stamp-duty-calculator | Stamp Duty Calculator, rent-receipt-generator | Rent Receipt Generator, ifsc-bank-details | IFSC Bank Details, whatsapp-link-generator | WhatsApp Link Generator, upi-qr-generator | UPI QR Generator, solar-panel-calculator | Solar Panel Calculator, credit-score-estimator | Credit Score Estimator, countdown-timer | Countdown Timer, pomodoro-timer | Pomodoro Timer, love-calculator | Love Calculator
+
+FUN: love-calculator | Love Calculator, meme-generator | Meme Generator, typing-speed-test | Typing Speed Test`;
+
+interface ConversationMessage {
+  role: "user" | "model";
+  parts: { text: string }[];
 }
 
-const patterns: Pattern[] = [
-  // EMI & Loans
-  { keywords: ["emi", "equated monthly", "monthly installment"], tool: "emi-calculator", name: "EMI Calculator", response: "For EMI calculation, use our EMI Calculator! It works for home loans, car loans, personal loans, and more." },
-  { keywords: ["home loan", "housing loan", "mortgage"], tool: "home-loan-calculator", name: "Home Loan Calculator", response: "Calculate your home loan EMI, total interest and year-wise breakdown with our Home Loan Calculator!" },
-  { keywords: ["car loan", "auto loan", "vehicle loan"], tool: "car-loan-calculator", name: "Car Loan Calculator", response: "Calculate your car loan EMI, total interest and payment schedule with our Car Loan Calculator!" },
-  { keywords: ["education loan", "student loan", "study loan"], tool: "education-loan-calculator", name: "Education Loan Calculator", response: "Plan your education loan with moratorium period and total cost using our Education Loan Calculator!" },
-  { keywords: ["loan eligibility", "max loan", "how much loan"], tool: "loan-eligibility-calculator", name: "Loan Eligibility Calculator", response: "Find out your maximum eligible loan amount based on income with our Loan Eligibility Calculator!" },
+async function callGemini(userMessage: string, history: ConversationMessage[]): Promise<string> {
+  const contents = [
+    { role: "user" as const, parts: [{ text: SYSTEM_PROMPT }] },
+    { role: "model" as const, parts: [{ text: "Understood! I'm SabTools Assistant. I'll help users find the right tools from SabTools.in's 424+ free tools. I'll keep responses short, friendly, and recommend tools using the [TOOL:slug:name] format. Ready to help!" }] },
+    ...history,
+    { role: "user" as const, parts: [{ text: userMessage }] },
+  ];
 
-  // SIP & Investments
-  { keywords: ["sip", "systematic investment", "mutual fund invest"], tool: "sip-calculator", name: "SIP Calculator", response: "Our SIP Calculator can help you plan your mutual fund investments and see how your money grows!" },
-  { keywords: ["mutual fund", "fund returns"], tool: "mutual-fund-calculator", name: "Mutual Fund Calculator", response: "Calculate SIP and Lumpsum mutual fund returns with our Mutual Fund Calculator!" },
-  { keywords: ["lumpsum", "one time investment"], tool: "lumpsum-calculator", name: "Lumpsum Calculator", response: "Calculate returns on your one-time investment with our Lumpsum Calculator!" },
-  { keywords: ["swp", "systematic withdrawal"], tool: "swp-calculator", name: "SWP Calculator", response: "Plan your monthly withdrawals from investments with our SWP Calculator!" },
-  { keywords: ["elss", "tax saving fund", "80c mutual"], tool: "elss-tax-calculator", name: "ELSS Tax Calculator", response: "Calculate ELSS returns with Section 80C tax savings using our ELSS Tax Calculator!" },
-
-  // Income Tax
-  { keywords: ["income tax", "tax calculator", "salary tax", "new regime", "old regime", "tax saving"], tool: "income-tax-calculator", name: "Income Tax Calculator", response: "Use our Income Tax Calculator to compare Old vs New regime and find which saves you more!" },
-
-  // GST
-  { keywords: ["gst calculator", "goods and services tax", "gst rate", "gst amount"], tool: "gst-calculator", name: "GST Calculator", response: "Our GST Calculator handles 5%, 12%, 18%, and 28% rates. Calculate inclusive and exclusive GST instantly!" },
-  { keywords: ["gst invoice", "gst bill", "cgst sgst"], tool: "gst-invoice-generator", name: "GST Invoice Generator", response: "Generate formatted GST invoices with CGST/SGST breakdown using our GST Invoice Generator!" },
-  { keywords: ["gst number", "gstin", "gst validate"], tool: "gst-number-validator", name: "GST Number Validator", response: "Validate any GSTIN and extract state, PAN and entity details with our GST Number Validator!" },
-
-  // Age
-  { keywords: ["age", "how old", "birthday", "date of birth", "dob"], tool: "age-calculator", name: "Age Calculator", response: "The Age Calculator gives your exact age in years, months, and days!" },
-
-  // Percentage
-  { keywords: ["percentage", "percent", "marks percentage"], tool: "percentage-calculator", name: "Percentage Calculator", response: "Our Percentage Calculator handles all types -- marks percentage, increase/decrease, and more!" },
-
-  // Image Tools
-  { keywords: ["compress image", "image size", "reduce photo", "photo compress", "50kb", "100kb", "image compress"], tool: "image-compressor", name: "Image Compressor", response: "Our Image Compressor can reduce your photo to any size -- 20KB, 50KB, 100KB. Perfect for government forms!" },
-  { keywords: ["resize image", "image dimensions", "scale image"], tool: "image-resizer", name: "Image Resizer", response: "Resize your images to exact dimensions or percentage with our Image Resizer!" },
-  { keywords: ["crop image", "cut image", "trim image"], tool: "image-cropper", name: "Image Cropper", response: "Crop your images to custom dimensions with our Image Cropper!" },
-  { keywords: ["convert image", "jpg to png", "png to jpg", "image format", "webp"], tool: "image-format-converter", name: "Image Format Converter", response: "Convert between JPG, PNG, WebP, and more with our Image Format Converter!" },
-  { keywords: ["passport photo", "passport size", "id photo", "aadhaar photo", "visa photo"], tool: "passport-photo-maker", name: "Passport Photo Maker", response: "Create perfect passport-size photos for Indian passport, Aadhaar, PAN, and visa!" },
-  { keywords: ["background remov", "remove bg", "transparent"], tool: "background-remover", name: "Background Remover", response: "Remove backgrounds from your images with our Background Remover!" },
-  { keywords: ["watermark", "image watermark"], tool: "image-watermark", name: "Image Watermark", response: "Add custom text watermarks to your images for protection!" },
-
-  // PDF Tools
-  { keywords: ["merge pdf", "combine pdf", "join pdf"], tool: "merge-pdf", name: "Merge PDF", response: "Use our PDF Merge tool to combine multiple PDF files into one!" },
-  { keywords: ["split pdf", "extract page", "separate pdf"], tool: "split-pdf", name: "Split PDF", response: "Our PDF Split tool lets you extract specific pages from any PDF!" },
-  { keywords: ["compress pdf", "reduce pdf", "pdf size", "pdf smaller"], tool: "compress-pdf", name: "Compress PDF", response: "Compress your PDF files to reduce size without losing quality!" },
-  { keywords: ["pdf to word", "pdf text", "extract pdf"], tool: "pdf-to-word", name: "PDF to Word", response: "Extract text from PDF files and convert to editable documents!" },
-  { keywords: ["image to pdf", "photo to pdf", "jpg to pdf"], tool: "image-to-pdf", name: "Image to PDF", response: "Convert your images to PDF with proper page sizes using our Image to PDF tool!" },
-
-  // Word Counter
-  { keywords: ["word count", "character count", "count words", "essay word"], tool: "word-counter", name: "Word Counter", response: "Our Word Counter shows word count, character count, sentence count, and reading time!" },
-
-  // Password
-  { keywords: ["password generate", "strong password", "random password"], tool: "password-generator", name: "Password Generator", response: "Generate strong, uncrackable passwords with our Password Generator!" },
-  { keywords: ["password strength", "password check"], tool: "password-strength-checker", name: "Password Strength Checker", response: "Check how strong your password is and get improvement tips!" },
-
-  // HRA
-  { keywords: ["hra", "house rent allowance", "rent allowance", "hra exemption", "hra tax"], tool: "hra-calculator", name: "HRA Calculator", response: "Calculate your exact HRA tax exemption with our HRA Calculator!" },
-
-  // PPF
-  { keywords: ["ppf", "public provident", "provident fund"], tool: "ppf-calculator", name: "PPF Calculator", response: "See how your PPF investment grows over 15 years with our PPF Calculator!" },
-
-  // FD
-  { keywords: ["fd calculator", "fixed deposit", "fd interest", "fd rate", "fd maturity"], tool: "fd-calculator", name: "FD Calculator", response: "Calculate your FD maturity amount and interest earned with our FD Calculator!" },
-  { keywords: ["fd comparison", "best fd", "compare fd"], tool: "fd-comparison", name: "FD Comparison", response: "Compare FD rates across 10 major Indian banks with our FD Comparison tool!" },
-
-  // NPS
-  { keywords: ["nps", "national pension", "pension calculator"], tool: "nps-calculator", name: "NPS Calculator", response: "Plan your retirement with our NPS Calculator -- see your pension amount at retirement!" },
-
-  // Salary
-  { keywords: ["salary", "ctc", "in hand", "take home", "in-hand", "net salary"], tool: "salary-calculator", name: "Salary Calculator", response: "Find your exact take-home salary from CTC with our Salary Calculator!" },
-  { keywords: ["salary hike", "appraisal", "increment"], tool: "salary-hike-calculator", name: "Salary Hike Calculator", response: "Calculate your new salary after a percentage hike with our Salary Hike Calculator!" },
-
-  // Gratuity
-  { keywords: ["gratuity", "years of service"], tool: "gratuity-calculator", name: "Gratuity Calculator", response: "Calculate your gratuity amount based on years of service and last drawn salary!" },
-
-  // QR Code
-  { keywords: ["qr code", "qr generate", "barcode"], tool: "qr-code-generator", name: "QR Code Generator", response: "Generate QR codes for any URL, text, UPI ID, or WiFi password!" },
-  { keywords: ["upi qr", "upi payment", "gpay qr", "phonepe qr"], tool: "upi-qr-generator", name: "UPI QR Generator", response: "Generate UPI payment QR codes for GPay, PhonePe, Paytm and more!" },
-
-  // JSON
-  { keywords: ["json format", "beautify json", "validate json", "json formatter"], tool: "json-formatter", name: "JSON Formatter", response: "Format, validate, and beautify your JSON data with our JSON Formatter!" },
-
-  // BMI
-  { keywords: ["bmi", "body mass", "obesity", "overweight"], tool: "bmi-calculator", name: "BMI Calculator", response: "Check your BMI and health status with our BMI Calculator!" },
-
-  // Currency
-  { keywords: ["currency", "dollar to rupee", "usd to inr", "exchange rate", "convert currency"], tool: "currency-converter", name: "Currency Converter", response: "Convert currencies with live exchange rates using our Currency Converter!" },
-
-  // IFSC
-  { keywords: ["ifsc", "bank code", "neft", "rtgs", "bank branch"], tool: "ifsc-bank-details", name: "IFSC Bank Details", response: "Look up any IFSC code to find bank branch details, address, and MICR code!" },
-
-  // Compound & Simple Interest
-  { keywords: ["compound interest", "ci calculator"], tool: "compound-interest-calculator", name: "Compound Interest Calculator", response: "Calculate compound interest with our easy-to-use calculator!" },
-  { keywords: ["simple interest", "si calculator"], tool: "simple-interest-calculator", name: "Simple Interest Calculator", response: "Calculate simple interest quickly with our Simple Interest Calculator!" },
-
-  // Resume
-  { keywords: ["resume", "cv builder", "curriculum vitae"], tool: "ai-resume-bullet-points", name: "AI Resume Bullet Points", response: "Transform your job descriptions into achievement-oriented resume bullet points!" },
-
-  // Text tools
-  { keywords: ["case convert", "uppercase", "lowercase", "title case"], tool: "case-converter", name: "Case Converter", response: "Convert text between UPPERCASE, lowercase, Title Case and more!" },
-  { keywords: ["lorem ipsum", "dummy text", "placeholder text"], tool: "lorem-ipsum-generator", name: "Lorem Ipsum Generator", response: "Generate placeholder text for design and development!" },
-
-  // Electricity
-  { keywords: ["electricity", "electric bill", "power bill", "bijli bill"], tool: "electricity-bill-calculator", name: "Electricity Bill Calculator", response: "Calculate your electricity bill based on your state's rates!" },
-
-  // Credit Score
-  { keywords: ["credit score", "cibil"], tool: "credit-score-estimator", name: "Credit Score Estimator", response: "Estimate your CIBIL credit score based on your financial habits!" },
-
-  // Color tools
-  { keywords: ["color pick", "hex to rgb", "color convert"], tool: "color-picker", name: "Color Picker", response: "Pick colors and convert between HEX, RGB, HSL formats with our Color Picker!" },
-  { keywords: ["css gradient", "gradient generator"], tool: "css-gradient-generator", name: "CSS Gradient Generator", response: "Create beautiful CSS gradients with live preview!" },
-
-  // Converters
-  { keywords: ["length convert", "meter to feet", "feet to meter", "cm to inch"], tool: "length-converter", name: "Length Converter", response: "Convert between meters, feet, inches, cm, km, miles and more!" },
-  { keywords: ["weight convert", "kg to pound", "pound to kg"], tool: "weight-converter", name: "Weight Converter", response: "Convert between kg, pounds, ounces, grams and more!" },
-  { keywords: ["temperature convert", "celsius", "fahrenheit"], tool: "temperature-converter", name: "Temperature Converter", response: "Convert between Celsius, Fahrenheit and Kelvin!" },
-
-  // WhatsApp
-  { keywords: ["whatsapp link", "wa.me", "whatsapp message"], tool: "whatsapp-link-generator", name: "WhatsApp Link Generator", response: "Generate wa.me links with pre-filled messages and QR codes!" },
-
-  // Health
-  { keywords: ["calorie", "diet", "weight loss", "calorie intake"], tool: "calorie-calculator", name: "Calorie Calculator", response: "Calculate daily calorie intake for weight loss, gain or maintenance!" },
-  { keywords: ["pregnancy", "due date", "conception"], tool: "pregnancy-calculator", name: "Pregnancy Calculator", response: "Calculate your due date and track pregnancy week by week!" },
-  { keywords: ["sleep calculator", "bedtime", "wake up time"], tool: "sleep-calculator", name: "Sleep Calculator", response: "Find your optimal bedtime or wake time based on sleep cycles!" },
-
-  // Typing test
-  { keywords: ["typing", "typing speed", "wpm", "typing test"], tool: "typing-speed-test", name: "Typing Speed Test", response: "Test your typing speed and accuracy with our Typing Speed Test!" },
-
-  // Love calculator
-  { keywords: ["love calculator", "love compatibility", "crush"], tool: "love-calculator", name: "Love Calculator", response: "Check your love compatibility percentage with our fun Love Calculator!" },
-
-  // Date tools
-  { keywords: ["date difference", "days between", "how many days"], tool: "date-difference-calculator", name: "Date Difference Calculator", response: "Calculate the exact difference between two dates in days, months and years!" },
-  { keywords: ["countdown", "days left", "event countdown"], tool: "countdown-timer", name: "Countdown Timer", response: "Create a countdown timer to any future date or event!" },
-
-  // Gold
-  { keywords: ["gold price", "gold calculator", "gold value", "karat"], tool: "gold-price-calculator", name: "Gold Price Calculator", response: "Calculate gold value based on weight, purity (karat) and current price!" },
-
-  // Stamp duty
-  { keywords: ["stamp duty", "registration charge", "property registration"], tool: "stamp-duty-calculator", name: "Stamp Duty Calculator", response: "Calculate stamp duty and registration charges state-wise in India!" },
-
-  // Solar
-  { keywords: ["solar panel", "solar calculator", "rooftop solar"], tool: "solar-panel-calculator", name: "Solar Panel Calculator", response: "Calculate solar panel system size, cost, savings and payback period!" },
-
-  // Fuel
-  { keywords: ["fuel cost", "petrol cost", "diesel cost", "trip cost"], tool: "fuel-cost-calculator", name: "Fuel Cost Calculator", response: "Calculate fuel cost for your trip based on distance, mileage and fuel price!" },
-  { keywords: ["mileage", "km per liter", "fuel efficiency"], tool: "mileage-calculator", name: "Mileage Calculator", response: "Calculate your vehicle's mileage and cost per kilometer!" },
-
-  // SEO
-  { keywords: ["meta tag", "seo tag"], tool: "meta-tag-generator", name: "Meta Tag Generator", response: "Generate SEO-friendly meta tags for your website!" },
-  { keywords: ["sitemap", "xml sitemap"], tool: "sitemap-generator", name: "XML Sitemap Generator", response: "Generate an XML sitemap for your website pages!" },
-
-  // AI Writing
-  { keywords: ["ai write", "ai email", "email writer"], tool: "ai-email-writer", name: "AI Email Writer", response: "Generate professional emails for job applications, leave requests and more!" },
-  { keywords: ["ai story", "story generator"], tool: "ai-story-generator", name: "AI Story Generator", response: "Generate short stories in Adventure, Romance, Mystery and more genres!" },
-  { keywords: ["ai essay", "essay writer", "write essay"], tool: "ai-essay-writer", name: "AI Essay Writer", response: "Generate structured essays in multiple styles for school and college!" },
-  { keywords: ["wedding invitation", "shaadi card"], tool: "ai-wedding-invitation", name: "AI Wedding Invitation", response: "Generate beautiful wedding invitations in Hindu, Muslim, Sikh and Christian styles!" },
-  { keywords: ["cover letter", "job application letter"], tool: "ai-cover-letter-generator", name: "AI Cover Letter Generator", response: "Generate professional cover letters tailored to your job and skills!" },
-
-  // Education
-  { keywords: ["gpa", "sgpa", "cgpa calculator"], tool: "gpa-calculator", name: "GPA Calculator", response: "Calculate your SGPA/CGPA with our GPA Calculator!" },
-  { keywords: ["cgpa to percentage", "convert cgpa"], tool: "cgpa-to-percentage", name: "CGPA to Percentage", response: "Convert CGPA to percentage using CBSE, VTU and other formulas!" },
-
-  // CAGR
-  { keywords: ["cagr", "compound annual growth"], tool: "cagr-calculator", name: "CAGR Calculator", response: "Calculate Compound Annual Growth Rate for your investments!" },
-
-  // Inflation
-  { keywords: ["inflation", "purchasing power", "future value"], tool: "inflation-calculator", name: "Inflation Calculator", response: "See how inflation affects your money's purchasing power over time!" },
-
-  // Rent Receipt
-  { keywords: ["rent receipt", "hra claim"], tool: "rent-receipt-generator", name: "Rent Receipt Generator", response: "Generate rent receipts for HRA tax exemption claims!" },
-
-  // Pomodoro
-  { keywords: ["pomodoro", "focus timer", "productivity timer"], tool: "pomodoro-timer", name: "Pomodoro Timer", response: "Boost your productivity with 25/5 minute focused work sessions!" },
-
-  // Aadhaar / PAN
-  { keywords: ["aadhaar", "aadhar", "uid"], tool: "aadhaar-validator", name: "Aadhaar Validator", response: "Validate your Aadhaar number format using the Verhoeff checksum algorithm!" },
-  { keywords: ["pan card", "pan number", "pan valid"], tool: "pan-card-validator", name: "PAN Card Validator", response: "Validate your PAN card number format and identify holder type!" },
-
-  // Tip
-  { keywords: ["tip calculator", "bill split", "split bill"], tool: "split-bill-calculator", name: "Split Bill Calculator", response: "Split bills and calculate tips easily with our Split Bill Calculator!" },
-
-  // Discount
-  { keywords: ["discount", "sale price", "offer price"], tool: "discount-calculator", name: "Discount Calculator", response: "Calculate discount amount and final price after discount!" },
-
-  // Sukanya
-  { keywords: ["sukanya", "ssy", "girl child saving"], tool: "sukanya-samriddhi-calculator", name: "Sukanya Samriddhi Calculator", response: "Calculate Sukanya Samriddhi Yojana maturity amount for your girl child!" },
-
-  // EPF
-  { keywords: ["epf", "employee provident", "pf calculator"], tool: "epf-calculator", name: "EPF Calculator", response: "Calculate your Employee Provident Fund maturity amount and interest!" },
-
-  // TDS
-  { keywords: ["tds", "tax deducted"], tool: "tds-calculator", name: "TDS Calculator", response: "Calculate Tax Deducted at Source for salary, rent, interest and more!" },
-
-  // ROI
-  { keywords: ["roi", "return on investment"], tool: "roi-calculator", name: "ROI Calculator", response: "Calculate your Return on Investment with our ROI Calculator!" },
-
-  // Regex
-  { keywords: ["regex", "regular expression"], tool: "regex-tester", name: "Regex Tester", response: "Test and debug your regular expressions with real-time matching!" },
-
-  // Base64
-  { keywords: ["base64", "encode decode"], tool: "base64-encoder-decoder", name: "Base64 Encoder/Decoder", response: "Encode text to Base64 or decode Base64 to text easily!" },
-
-  // Meme
-  { keywords: ["meme", "meme generator", "meme maker"], tool: "meme-generator", name: "Meme Generator", response: "Create hilarious memes with custom text on uploaded images!" },
-
-  // Text to Speech
-  { keywords: ["text to speech", "tts", "read aloud"], tool: "text-to-speech", name: "Text to Speech", response: "Convert any text to speech with voice and speed controls!" },
-  { keywords: ["speech to text", "voice to text", "dictation"], tool: "speech-to-text", name: "Speech to Text", response: "Convert speech to text using voice recognition with live transcription!" },
-
-  // Number to Words
-  { keywords: ["number to words", "cheque amount", "lakhs crores"], tool: "number-to-words", name: "Number to Words", response: "Convert numbers to words in Indian numbering system (Lakhs, Crores)!" },
-];
-
-const INITIAL_MESSAGE: Message = {
-  type: "bot",
-  text: "Hi! I'm SabTools Assistant. Ask me anything like 'how to calculate EMI' or 'I need a PDF tool' and I'll find the right tool for you!",
-};
-
-// Common greetings and conversational patterns
-const greetings: Record<string, string> = {
-  "hi": "Hi there! I'm SabTools Assistant. How can I help you today? You can ask me about any calculator, converter, or tool!",
-  "hello": "Hello! Welcome to SabTools. Ask me anything — like 'calculate EMI', 'compress image', 'convert PDF', or 'check BMI'!",
-  "hey": "Hey! I'm here to help you find the right tool. What do you need? Try asking about loans, tax, images, PDFs, or any calculation!",
-  "good morning": "Good morning! How can I help you today? I know about 400+ free tools!",
-  "good evening": "Good evening! Need help finding a tool? Just ask!",
-  "good night": "Good night! Before you go, need any tool? Maybe our Sleep Calculator to find your perfect bedtime?",
-  "thanks": "You're welcome! Let me know if you need anything else.",
-  "thank you": "Happy to help! Ask me anytime you need a tool.",
-  "bye": "Bye! Come back anytime. All 400+ tools are always free!",
-  "ok": "Need anything else? Try asking about EMI, SIP, GST, image tools, PDF tools, or any calculator!",
-  "help": "I can help you find any tool on SabTools! Try asking:\n• 'How to calculate EMI?'\n• 'I need to compress an image'\n• 'Convert PDF to Word'\n• 'Calculate my BMI'\n• 'Check my salary'\n• 'Generate a password'",
-  "what can you do": "I can help you find the perfect tool from our 400+ collection! Ask me about:\n• Financial calculators (EMI, SIP, GST, Tax)\n• Health tools (BMI, Calorie, Sleep)\n• Image tools (Compress, Resize, Background Remove)\n• PDF tools (Merge, Split, Convert)\n• Text tools (Word Count, Case Convert)\n• And much more!",
-  "who are you": "I'm SabTools Assistant — your guide to 400+ free online tools! Ask me about any calculator, converter, or tool you need.",
-};
-
-// General topic patterns for broader matching
-const topicPatterns: { keywords: string[]; response: string; suggestions: { tool: string; name: string }[] }[] = [
-  {
-    keywords: ["loan", "borrow", "lending", "emi"],
-    response: "We have several loan calculators! Here are the most popular ones:",
-    suggestions: [
-      { tool: "emi-calculator", name: "EMI Calculator" },
-      { tool: "home-loan-calculator", name: "Home Loan Calculator" },
-      { tool: "car-loan-calculator", name: "Car Loan Calculator" },
-      { tool: "loan-eligibility-calculator", name: "Loan Eligibility Calculator" },
-    ],
-  },
-  {
-    keywords: ["invest", "money grow", "wealth", "saving", "returns"],
-    response: "Here are our investment calculators:",
-    suggestions: [
-      { tool: "sip-calculator", name: "SIP Calculator" },
-      { tool: "fd-calculator", name: "FD Calculator" },
-      { tool: "ppf-calculator", name: "PPF Calculator" },
-      { tool: "lumpsum-calculator", name: "Lumpsum Calculator" },
-    ],
-  },
-  {
-    keywords: ["tax", "income tax", "itr", "80c", "deduction", "save tax"],
-    response: "Here are our tax-related tools:",
-    suggestions: [
-      { tool: "income-tax-calculator", name: "Income Tax Calculator" },
-      { tool: "hra-calculator", name: "HRA Calculator" },
-      { tool: "tds-calculator", name: "TDS Calculator" },
-      { tool: "elss-tax-calculator", name: "ELSS Tax Calculator" },
-    ],
-  },
-  {
-    keywords: ["image", "photo", "picture", "jpg", "png"],
-    response: "We have lots of image tools! Here are the popular ones:",
-    suggestions: [
-      { tool: "image-compressor", name: "Image Compressor" },
-      { tool: "image-resizer", name: "Image Resizer" },
-      { tool: "background-remover", name: "Background Remover" },
-      { tool: "passport-photo-maker", name: "Passport Photo Maker" },
-    ],
-  },
-  {
-    keywords: ["pdf", "document", "file"],
-    response: "Here are our PDF tools:",
-    suggestions: [
-      { tool: "merge-pdf", name: "Merge PDF" },
-      { tool: "split-pdf", name: "Split PDF" },
-      { tool: "compress-pdf", name: "Compress PDF" },
-      { tool: "image-to-pdf", name: "Image to PDF" },
-    ],
-  },
-  {
-    keywords: ["health", "fitness", "body", "weight", "diet"],
-    response: "Check out our health calculators:",
-    suggestions: [
-      { tool: "bmi-calculator", name: "BMI Calculator" },
-      { tool: "calorie-calculator", name: "Calorie Calculator" },
-      { tool: "sleep-calculator", name: "Sleep Calculator" },
-      { tool: "pregnancy-calculator", name: "Pregnancy Calculator" },
-    ],
-  },
-  {
-    keywords: ["student", "study", "exam", "marks", "grade", "college", "school"],
-    response: "Here are tools for students:",
-    suggestions: [
-      { tool: "scientific-calculator", name: "Scientific Calculator" },
-      { tool: "cgpa-to-percentage", name: "CGPA to Percentage" },
-      { tool: "percentage-calculator", name: "Percentage Calculator" },
-      { tool: "gpa-calculator", name: "GPA Calculator" },
-    ],
-  },
-  {
-    keywords: ["text", "write", "writing", "content"],
-    response: "Here are our text and writing tools:",
-    suggestions: [
-      { tool: "word-counter", name: "Word Counter" },
-      { tool: "case-converter", name: "Case Converter" },
-      { tool: "ai-essay-writer", name: "AI Essay Writer" },
-      { tool: "ai-email-writer", name: "AI Email Writer" },
-    ],
-  },
-  {
-    keywords: ["convert", "converter", "conversion", "unit"],
-    response: "We have many converters! Here are the popular ones:",
-    suggestions: [
-      { tool: "currency-converter", name: "Currency Converter" },
-      { tool: "length-converter", name: "Length Converter" },
-      { tool: "weight-converter", name: "Weight Converter" },
-      { tool: "temperature-converter", name: "Temperature Converter" },
-    ],
-  },
-  {
-    keywords: ["salary", "pay", "income", "ctc", "package"],
-    response: "Here are our salary-related tools:",
-    suggestions: [
-      { tool: "salary-calculator", name: "Salary Calculator (CTC to In-Hand)" },
-      { tool: "salary-hike-calculator", name: "Salary Hike Calculator" },
-      { tool: "income-tax-calculator", name: "Income Tax Calculator" },
-      { tool: "gratuity-calculator", name: "Gratuity Calculator" },
-    ],
-  },
-  {
-    keywords: ["security", "password", "safe", "protect"],
-    response: "Here are our security tools:",
-    suggestions: [
-      { tool: "password-generator", name: "Password Generator" },
-      { tool: "password-strength-checker", name: "Password Strength Checker" },
-      { tool: "aadhaar-validator", name: "Aadhaar Validator" },
-      { tool: "pan-card-validator", name: "PAN Card Validator" },
-    ],
-  },
-  {
-    keywords: ["developer", "coding", "code", "programming", "json", "regex", "api"],
-    response: "Here are tools for developers:",
-    suggestions: [
-      { tool: "json-formatter", name: "JSON Formatter" },
-      { tool: "regex-tester", name: "Regex Tester" },
-      { tool: "base64-encoder-decoder", name: "Base64 Encoder/Decoder" },
-      { tool: "color-picker", name: "Color Picker" },
-    ],
-  },
-  {
-    keywords: ["gold", "jewellery", "jewelry", "ornament"],
-    response: "Here are our gold-related tools:",
-    suggestions: [
-      { tool: "gold-price-calculator", name: "Gold Price Calculator" },
-    ],
-  },
-  {
-    keywords: ["property", "house", "flat", "real estate", "rent"],
-    response: "Here are our property-related tools:",
-    suggestions: [
-      { tool: "stamp-duty-calculator", name: "Stamp Duty Calculator" },
-      { tool: "home-loan-calculator", name: "Home Loan Calculator" },
-      { tool: "hra-calculator", name: "HRA Calculator" },
-      { tool: "rent-receipt-generator", name: "Rent Receipt Generator" },
-    ],
-  },
-];
-
-function findMatch(input: string): { response: string; tool: string; name: string; suggestions?: { tool: string; name: string }[] } | null {
-  const lower = input.toLowerCase().trim();
-
-  // Check greetings first
-  for (const [key, response] of Object.entries(greetings)) {
-    if (lower === key || lower.startsWith(key + " ") || lower.startsWith(key + "!") || lower.startsWith(key + ",") || lower === key + "!") {
-      return { response, tool: "", name: "" };
-    }
-  }
-
-  // Check exact keyword patterns (original behavior)
-  for (const pattern of patterns) {
-    for (const keyword of pattern.keywords) {
-      if (lower.includes(keyword)) {
-        return { response: pattern.response, tool: pattern.tool, name: pattern.name };
+  try {
+    const res = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents,
+          generationConfig: {
+            temperature: 0.7,
+            maxOutputTokens: 300,
+          },
+        }),
       }
-    }
+    );
+
+    if (!res.ok) throw new Error("API call failed");
+
+    const data = await res.json();
+    return data.candidates?.[0]?.content?.parts?.[0]?.text || "Sorry, I couldn't process that. Try asking about a specific tool!";
+  } catch {
+    return "I'm having trouble connecting right now. In the meantime, try searching for tools on the homepage!";
+  }
+}
+
+function parseResponse(text: string): { message: string; tools: { slug: string; name: string }[] } {
+  const tools: { slug: string; name: string }[] = [];
+  const toolRegex = /\[TOOL:([a-z0-9-]+):([^\]]+)\]/g;
+  let match;
+
+  while ((match = toolRegex.exec(text)) !== null) {
+    tools.push({ slug: match[1], name: match[2] });
   }
 
-  // Check broad topic patterns (new - suggests multiple tools)
-  for (const topic of topicPatterns) {
-    for (const keyword of topic.keywords) {
-      if (lower.includes(keyword)) {
-        return { response: topic.response, tool: topic.suggestions[0].tool, name: topic.suggestions[0].name, suggestions: topic.suggestions };
-      }
-    }
-  }
-
-  // Smart fallback - try to match individual words
-  const words = lower.split(/\s+/).filter(w => w.length > 3);
-  for (const word of words) {
-    for (const pattern of patterns) {
-      for (const keyword of pattern.keywords) {
-        if (keyword.includes(word) || word.includes(keyword)) {
-          return { response: pattern.response, tool: pattern.tool, name: pattern.name };
-        }
-      }
-    }
-  }
-
-  return null;
+  const message = text.replace(toolRegex, "").replace(/\n{3,}/g, "\n\n").trim();
+  return { message, tools };
 }
 
 export default function AskSabTools() {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([INITIAL_MESSAGE]);
+  const [messages, setMessages] = useState<Message[]>([
+    { type: "bot", text: "Hi! I'm SabTools AI Assistant. Ask me anything — I can help you find the right tool, explain calculations, or answer your questions!" },
+  ]);
+  const [history, setHistory] = useState<ConversationMessage[]>([]);
   const [input, setInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -455,43 +132,25 @@ export default function AskSabTools() {
     }
   }, [isOpen]);
 
-  const handleSend = useCallback(() => {
+  const handleSend = useCallback(async () => {
     const trimmed = input.trim();
-    if (!trimmed) return;
+    if (!trimmed || isLoading) return;
 
-    const userMsg: Message = { type: "user", text: trimmed };
-    const match = findMatch(trimmed);
-
-    const newMessages: Message[] = [userMsg];
-
-    if (match) {
-      newMessages.push({
-        type: "bot",
-        text: match.response,
-        toolSlug: match.tool || undefined,
-        toolName: match.name || undefined,
-      });
-      // If there are multiple suggestions, add them as separate messages
-      if (match.suggestions && match.suggestions.length > 1) {
-        match.suggestions.slice(1).forEach((s) => {
-          newMessages.push({
-            type: "bot",
-            text: "",
-            toolSlug: s.tool,
-            toolName: s.name,
-          });
-        });
-      }
-    } else {
-      newMessages.push({
-        type: "bot",
-        text: "I'm not sure about that, but here are some things you can try:\n\n• Ask about a specific tool: 'EMI calculator', 'image compressor'\n• Ask by topic: 'loan tools', 'tax calculator', 'image tools'\n• Ask how to do something: 'how to calculate GST', 'how to compress PDF'\n\nOr just type 'help' to see all categories!",
-      });
-    }
-
-    setMessages((prev) => [...prev, ...newMessages]);
     setInput("");
-  }, [input]);
+    setMessages((prev) => [...prev, { type: "user", text: trimmed }]);
+    setIsLoading(true);
+
+    const aiResponse = await callGemini(trimmed, history);
+    const { message, tools } = parseResponse(aiResponse);
+
+    setMessages((prev) => [...prev, { type: "bot", text: message, tools: tools.length > 0 ? tools : undefined }]);
+    setHistory((prev) => [
+      ...prev,
+      { role: "user", parts: [{ text: trimmed }] },
+      { role: "model", parts: [{ text: aiResponse }] },
+    ]);
+    setIsLoading(false);
+  }, [input, isLoading, history]);
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
@@ -512,61 +171,24 @@ export default function AskSabTools() {
           className="fixed left-6 bottom-6 z-40 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold py-3 px-5 rounded-full shadow-lg hover:shadow-xl hover:from-indigo-700 hover:to-purple-700 transition-all active:scale-95 flex items-center gap-2 text-sm"
           aria-label="Ask SabTools"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={2}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-            />
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
           </svg>
-          <span className="hidden sm:inline">Ask SabTools</span>
+          <span className="hidden sm:inline">Ask SabTools AI</span>
         </button>
       )}
 
       {/* Chat Window */}
       {isOpen && (
-        <div
-          className="fixed left-0 bottom-0 sm:left-6 sm:bottom-6 z-50 w-full sm:w-[350px] h-[60vh] sm:h-[450px] bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden animate-slide-up"
-        >
+        <div className="fixed left-0 bottom-0 sm:left-6 sm:bottom-6 z-50 w-full sm:w-[380px] h-[65vh] sm:h-[500px] bg-white rounded-t-2xl sm:rounded-2xl shadow-2xl border border-gray-200 flex flex-col overflow-hidden animate-slide-up">
           {/* Header */}
           <div className="bg-gradient-to-r from-indigo-600 to-purple-600 text-white px-4 py-3 flex items-center justify-between shrink-0">
             <div className="flex items-center gap-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-                />
-              </svg>
-              <span className="font-semibold text-sm">Ask SabTools</span>
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+              <span className="font-semibold text-sm">SabTools AI Assistant</span>
             </div>
-            <button
-              onClick={() => setIsOpen(false)}
-              className="p-1 hover:bg-white/20 rounded-full transition-colors"
-              aria-label="Close chat"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
+            <button onClick={() => setIsOpen(false)} className="p-1 hover:bg-white/20 rounded-full transition-colors" aria-label="Close chat">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
@@ -580,27 +202,54 @@ export default function AskSabTools() {
                   className={`max-w-[85%] px-3 py-2 rounded-2xl text-sm leading-relaxed ${
                     msg.type === "user"
                       ? "bg-indigo-600 text-white rounded-br-md"
-                      : msg.text === "" && msg.toolSlug
-                      ? "bg-transparent py-0 px-0"
                       : "bg-gray-100 text-gray-800 rounded-bl-md"
                   }`}
                 >
-                  {msg.text && msg.text.split("\n").map((line, j) => (
+                  {msg.text.split("\n").map((line, j) => (
                     <p key={j} className={j > 0 ? "mt-1" : ""}>{line}</p>
                   ))}
-                  {msg.toolSlug && (
-                    <Link
-                      href={`/tools/${msg.toolSlug}`}
-                      className="inline-flex items-center gap-1 mt-1 font-semibold text-sm text-indigo-600 hover:text-indigo-800 bg-indigo-50 px-3 py-1.5 rounded-full hover:bg-indigo-100 transition-colors"
-                    >
-                      {msg.toolName} &rarr;
-                    </Link>
+                  {msg.tools && msg.tools.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5 mt-2">
+                      {msg.tools.map((tool, j) => (
+                        <Link
+                          key={j}
+                          href={`/tools/${tool.slug}`}
+                          className="inline-flex items-center gap-1 text-xs font-semibold text-indigo-600 bg-indigo-50 px-2.5 py-1.5 rounded-full hover:bg-indigo-100 transition-colors border border-indigo-100"
+                        >
+                          {tool.name} &rarr;
+                        </Link>
+                      ))}
+                    </div>
                   )}
                 </div>
               </div>
             ))}
+            {isLoading && (
+              <div className="flex justify-start">
+                <div className="bg-gray-100 text-gray-500 px-4 py-2.5 rounded-2xl rounded-bl-md text-sm flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
+                  <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
+                  <span className="w-1.5 h-1.5 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
+                </div>
+              </div>
+            )}
             <div ref={messagesEndRef} />
           </div>
+
+          {/* Quick Suggestions */}
+          {messages.length <= 1 && (
+            <div className="px-4 pb-2 flex flex-wrap gap-1.5">
+              {["Calculate EMI", "Compress image", "Income tax help", "Sleep calculator", "PDF tools"].map((q) => (
+                <button
+                  key={q}
+                  onClick={() => { setInput(q); }}
+                  className="text-xs bg-indigo-50 text-indigo-600 px-3 py-1.5 rounded-full hover:bg-indigo-100 transition-colors border border-indigo-100"
+                >
+                  {q}
+                </button>
+              ))}
+            </div>
+          )}
 
           {/* Input */}
           <div className="px-3 py-3 border-t border-gray-100 shrink-0">
@@ -611,23 +260,17 @@ export default function AskSabTools() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Ask about any tool..."
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                placeholder="Ask me anything..."
+                disabled={isLoading}
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent disabled:opacity-50"
               />
               <button
                 onClick={handleSend}
-                disabled={!input.trim()}
+                disabled={!input.trim() || isLoading}
                 className="bg-indigo-600 text-white p-2 rounded-full hover:bg-indigo-700 transition-colors disabled:opacity-40 disabled:cursor-not-allowed shrink-0"
                 aria-label="Send message"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth={2}
-                >
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                 </svg>
               </button>
@@ -636,21 +279,12 @@ export default function AskSabTools() {
         </div>
       )}
 
-      {/* Animation style */}
       <style jsx>{`
         @keyframes slide-up {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
         }
-        .animate-slide-up {
-          animation: slide-up 0.25s ease-out;
-        }
+        .animate-slide-up { animation: slide-up 0.25s ease-out; }
       `}</style>
     </>
   );
