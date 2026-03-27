@@ -2321,6 +2321,321 @@ const blogPosts: BlogPost[] = [
       <p>We are always adding new tools based on user demand. If you need a specific calculator or tool that is not currently available on SabTools, you can reach out to us through our contact page. We prioritise tools that benefit the largest number of users and aim to launch new calculators every month.</p>
     `,
   },
+  {
+    slug: "how-to-save-income-tax-india-2026-27",
+    title: "How to Save Income Tax in India 2026-27: Complete Guide with Calculator",
+    description: "Learn 15 proven ways to save income tax in India for FY 2026-27. Compare old vs new regime, maximize Section 80C, HRA, and NPS deductions with our free calculators.",
+    date: "2026-03-27",
+    category: "Finance",
+    readTime: "9 min read",
+    keywords: ["save income tax india", "income tax saving tips 2026", "section 80C deductions", "old vs new regime 2026", "tax saving calculator", "how to reduce income tax"],
+    content: `
+      <p>Tax season is here, and every salaried Indian is asking the same question: <strong>how can I save more income tax legally?</strong> With the FY 2026-27 tax filing season approaching, it is crucial to understand all available deductions, exemptions, and strategies to minimise your tax liability. This comprehensive guide covers 15 proven methods with practical examples.</p>
+
+      <h2>Old Regime vs New Regime: Which Saves More Tax?</h2>
+      <p>The first decision every taxpayer must make is choosing between the old and new tax regimes. The new regime offers lower slab rates but eliminates most deductions. The old regime has higher rates but allows deductions under Sections 80C, 80D, 24(b), and more.</p>
+      <p><strong>Quick rule of thumb:</strong> If your total deductions exceed Rs 3.75 lakh, the old regime usually saves more tax. If your deductions are below Rs 2 lakh, the new regime is likely better. Use our <a href="/tools/income-tax-calculator">Income Tax Calculator</a> to compare both regimes with your actual numbers.</p>
+      <ul>
+        <li><strong>New regime:</strong> No tax up to Rs 12 lakh (with Rs 75,000 standard deduction). Tax rates: 5% (3-7L), 10% (7-10L), 15% (10-12L), 20% (12-15L), 25% (15-20L), 30% (above 20L)</li>
+        <li><strong>Old regime:</strong> Basic exemption Rs 3 lakh. Tax rates: 5% (3-6L), 20% (6-9L), 30% (above 9L). But allows deductions of Rs 3-6 lakh or more</li>
+      </ul>
+
+      <h2>1. Section 80C — Rs 1.5 Lakh Deduction (Old Regime)</h2>
+      <p>This is the most popular tax-saving section. You can claim up to Rs 1,50,000 across multiple investments:</p>
+      <ul>
+        <li><strong>PPF (Public Provident Fund):</strong> Currently offering 7.1% tax-free returns. 15-year lock-in with partial withdrawal after 7 years. Use our <a href="/tools/ppf-calculator">PPF Calculator</a> to project your maturity amount.</li>
+        <li><strong>ELSS Mutual Funds:</strong> Equity-linked savings with only 3-year lock-in. Potential for 12-15% returns. Use our <a href="/tools/elss-tax-calculator">ELSS Tax Calculator</a>.</li>
+        <li><strong>EPF/VPF:</strong> Your EPF contribution already counts. Voluntary PF (VPF) offers the same interest rate with additional contributions.</li>
+        <li><strong>Life Insurance Premiums:</strong> Premiums paid for self, spouse, and children qualify.</li>
+        <li><strong>Children Tuition Fees:</strong> School/college tuition fees for up to 2 children.</li>
+        <li><strong>Home Loan Principal Repayment:</strong> The principal component of your EMI. Calculate your break-up with our <a href="/tools/emi-calculator">EMI Calculator</a>.</li>
+        <li><strong>National Savings Certificate (NSC):</strong> 5-year government savings scheme.</li>
+        <li><strong>Sukanya Samriddhi Yojana:</strong> For girl child. High interest + tax-free maturity. Use our <a href="/tools/sukanya-samriddhi-calculator">Sukanya Samriddhi Calculator</a>.</li>
+      </ul>
+
+      <h2>2. Section 80D — Health Insurance (Rs 25,000-1,00,000)</h2>
+      <p>Premiums paid for health insurance are deductible:</p>
+      <ul>
+        <li>Self, spouse, children: Up to Rs 25,000 (Rs 50,000 if any member is senior citizen)</li>
+        <li>Parents: Additional Rs 25,000 (Rs 50,000 if parents are senior citizens)</li>
+        <li><strong>Maximum possible deduction: Rs 1,00,000</strong> (if both you and parents are 60+)</li>
+        <li>Preventive health check-up: Rs 5,000 included within the above limits</li>
+      </ul>
+
+      <h2>3. HRA Exemption — Save Rs 50,000-2,00,000+</h2>
+      <p>If you live in a rented house and receive HRA from your employer, you can claim a significant exemption. The exempt amount is the minimum of three values:</p>
+      <ul>
+        <li>Actual HRA received</li>
+        <li>Rent paid minus 10% of basic salary</li>
+        <li>50% of basic salary (metro) or 40% (non-metro)</li>
+      </ul>
+      <p>Use our <a href="/tools/hra-calculator">HRA Calculator</a> to find your exact exemption. Even if you pay rent to your parents, this deduction applies — just ensure you have rent receipts. Generate them instantly with our <a href="/tools/rent-receipt-generator">Rent Receipt Generator</a>.</p>
+
+      <h2>4. Section 80CCD(1B) — NPS Extra Rs 50,000</h2>
+      <p>Over and above the 80C limit of Rs 1.5 lakh, you can claim an additional Rs 50,000 for contributions to the National Pension System (NPS). This means a total Rs 2 lakh deduction from just 80C + NPS. Use our <a href="/tools/nps-calculator">NPS Calculator</a> to see projected retirement corpus.</p>
+
+      <h2>5. Home Loan Interest — Section 24(b) Rs 2,00,000</h2>
+      <p>Interest paid on a home loan for a self-occupied property is deductible up to Rs 2,00,000 per year under Section 24(b). Combined with the principal deduction under 80C, a home loan can save you Rs 3.5 lakh+ in deductions. Calculate your interest vs principal split with our <a href="/tools/home-loan-calculator">Home Loan Calculator</a>.</p>
+
+      <h2>6. Standard Deduction — Rs 75,000 (Both Regimes)</h2>
+      <p>Every salaried individual gets a flat Rs 75,000 standard deduction from gross salary in FY 2026-27. This applies in both old and new regimes — no investment needed.</p>
+
+      <h2>7. Section 80E — Education Loan Interest</h2>
+      <p>The entire interest paid on an education loan is deductible for 8 years from the year of repayment. No upper limit on the deduction amount. Use our <a href="/tools/education-loan-calculator">Education Loan Calculator</a> to plan repayment.</p>
+
+      <h2>8. Section 80TTA/80TTB — Savings Account Interest</h2>
+      <p>Interest earned on savings accounts is deductible up to Rs 10,000 (80TTA) for those below 60, or Rs 50,000 (80TTB) for senior citizens. This includes interest from savings accounts in banks, post offices, and cooperative societies.</p>
+
+      <h2>Tax Saving Example: Rs 12 Lakh Salary</h2>
+      <p>Let us see how much an employee earning Rs 12 lakh can save under the old regime:</p>
+      <ul>
+        <li>Standard deduction: Rs 75,000</li>
+        <li>Section 80C (PPF + ELSS + EPF): Rs 1,50,000</li>
+        <li>Section 80D (health insurance): Rs 50,000</li>
+        <li>Section 80CCD(1B) NPS: Rs 50,000</li>
+        <li>HRA exemption: Rs 1,20,000 (approx.)</li>
+        <li><strong>Total deductions: Rs 4,45,000</strong></li>
+        <li>Taxable income: Rs 12,00,000 - Rs 4,45,000 = Rs 7,55,000</li>
+        <li>Tax payable (old regime): Rs 52,500 + cess = Rs 54,600</li>
+        <li>Tax payable (new regime): Rs 60,000 + cess = Rs 62,400</li>
+        <li><strong>Old regime saves Rs 7,800 more</strong></li>
+      </ul>
+      <p>Calculate your exact savings with our <a href="/tools/income-tax-calculator">Income Tax Calculator</a> — it compares both regimes side-by-side.</p>
+
+      <h2>Smart Tax Planning Tips</h2>
+      <ul>
+        <li><strong>Start early:</strong> Do not wait until March. Begin SIP investments in ELSS or PPF from April itself to benefit from compounding and avoid last-minute rush.</li>
+        <li><strong>Use your salary structure:</strong> Ask your employer to restructure salary to include more HRA, LTA, food coupons, and NPS contribution for maximum tax savings.</li>
+        <li><strong>File ITR even if not mandatory:</strong> Filing returns creates a record, helps in getting loans and visas, and allows you to carry forward losses.</li>
+        <li><strong>Keep all receipts:</strong> Maintain rent receipts, medical bills, insurance receipts, and investment proofs throughout the year.</li>
+      </ul>
+
+      <h2>Frequently Asked Questions</h2>
+      <p><strong>Q: Can I switch between old and new regime every year?</strong></p>
+      <p>Yes. Salaried individuals can switch between the old and new tax regime every financial year at the time of filing their ITR. However, individuals with business income can only switch once in their lifetime.</p>
+      <p><strong>Q: Is PPF better than ELSS for tax saving?</strong></p>
+      <p>PPF offers guaranteed returns (7.1%) with complete tax-free maturity but has a 15-year lock-in. ELSS offers potentially higher returns (12-15%) with only 3-year lock-in but gains above Rs 1.25 lakh are taxed at 12.5%. Choose based on your risk appetite and investment horizon. Use our <a href="/tools/sip-calculator">SIP Calculator</a> to compare projected returns.</p>
+      <p><strong>Q: Can I claim both HRA and home loan interest deduction?</strong></p>
+      <p>Yes, if you live in a rented house in one city (where you work) and have a home loan for a property in another city. Both deductions can be claimed simultaneously under the old regime.</p>
+    `,
+  },
+  {
+    slug: "password-security-guide-create-strong-passwords-2026",
+    title: "Password Security Guide 2026: How to Create Unbreakable Passwords",
+    description: "Learn how to create strong, secure passwords that protect your bank accounts, social media, and email. Free password generator and strength checker tools included.",
+    date: "2026-03-27",
+    category: "Security",
+    readTime: "6 min read",
+    keywords: ["strong password generator", "password security tips", "how to create strong password", "password strength checker", "secure password india", "online security tips"],
+    content: `
+      <p>In 2026, the average Indian has 40+ online accounts — from UPI apps and internet banking to social media and email. Yet studies show that <strong>83% of Indians still use weak passwords</strong> like "123456", "password", or their name followed by birth year. This guide will teach you how to create truly strong passwords and manage them safely.</p>
+
+      <h2>Why Password Security Matters More Than Ever</h2>
+      <p>India recorded over 13 lakh cybercrime complaints in 2025 alone. The most common attack vector? Stolen or weak passwords. Hackers use automated tools that can test millions of password combinations per second. A 6-character lowercase password can be cracked in under 1 second. But a 16-character password with mixed characters would take trillions of years.</p>
+
+      <h2>What Makes a Password Strong?</h2>
+      <p>A strong password has four key properties:</p>
+      <ul>
+        <li><strong>Length:</strong> At least 12 characters. Ideally 16 or more. Every additional character makes it exponentially harder to crack.</li>
+        <li><strong>Complexity:</strong> Mix of uppercase letters, lowercase letters, numbers, and special symbols (!@#$%^&*)</li>
+        <li><strong>Uniqueness:</strong> Never reuse passwords across sites. If one site gets hacked, all your accounts become vulnerable.</li>
+        <li><strong>Randomness:</strong> Avoid dictionary words, names, dates, or patterns. "Mumbaitiger$99" looks strong but is easily guessed by modern AI tools.</li>
+      </ul>
+      <p>Test your current passwords with our <a href="/tools/password-strength-checker">Password Strength Checker</a> to see how secure they really are.</p>
+
+      <h2>How to Create Strong Passwords</h2>
+      <h3>Method 1: Use Our Password Generator</h3>
+      <p>The easiest way is to use our <a href="/tools/password-generator">Password Generator</a>. It creates truly random passwords of any length with the mix of characters you choose. All generation happens in your browser — your password is never sent to any server.</p>
+
+      <h3>Method 2: The Passphrase Method</h3>
+      <p>Take 4-5 random, unrelated words and combine them with numbers and symbols:</p>
+      <ul>
+        <li>Pick random words: <em>mango, train, mirror, blue, kite</em></li>
+        <li>Combine with variations: <strong>Mango7train!Mirror&blue42Kite</strong></li>
+        <li>This is 30 characters, easy to remember, and virtually uncrackable</li>
+      </ul>
+
+      <h3>Method 3: The Sentence Method</h3>
+      <p>Think of a meaningful sentence and take the first letter of each word, then add numbers and symbols:</p>
+      <ul>
+        <li>Sentence: "My grandmother makes the best chai with 3 spoons of sugar!"</li>
+        <li>Password: <strong>Mgmtbcw3soS!</strong></li>
+        <li>12 characters with uppercase, lowercase, number, and symbol</li>
+      </ul>
+
+      <h2>Protecting Your Indian Bank Accounts</h2>
+      <p>Banking passwords require extra care. Here are specific tips for Indian net banking:</p>
+      <ul>
+        <li><strong>Never use your ATM PIN pattern</strong> as part of your net banking password</li>
+        <li><strong>Change passwords every 90 days</strong> as recommended by RBI guidelines</li>
+        <li><strong>Enable 2FA (two-factor authentication)</strong> on all banking apps</li>
+        <li><strong>Never share OTPs</strong> — no bank employee will ever ask for your OTP or password</li>
+        <li><strong>Avoid public WiFi</strong> for banking transactions. Use mobile data or a trusted network.</li>
+        <li><strong>Check your UPI ID</strong> is not easily guessable. Many people use phone@upi which is easy to target.</li>
+      </ul>
+
+      <h2>Password Cracking: How Fast Can Hackers Break In?</h2>
+      <p>Here is how long it takes a modern computer to crack a password by brute force:</p>
+      <ul>
+        <li><strong>6 characters (lowercase):</strong> Instant (less than 1 second)</li>
+        <li><strong>8 characters (mixed case):</strong> About 2 hours</li>
+        <li><strong>10 characters (mixed case + numbers):</strong> About 6 months</li>
+        <li><strong>12 characters (mixed case + numbers + symbols):</strong> About 34,000 years</li>
+        <li><strong>16 characters (mixed case + numbers + symbols):</strong> Trillions of years</li>
+      </ul>
+      <p>The lesson is clear: <strong>length is the single most important factor</strong> in password strength.</p>
+
+      <h2>Common Password Mistakes to Avoid</h2>
+      <ul>
+        <li>Using your name, birthday, or phone number</li>
+        <li>Using "India@123", "Admin@2026", or similar patterns</li>
+        <li>Reusing the same password for email, banking, and social media</li>
+        <li>Writing passwords on sticky notes near your computer</li>
+        <li>Sharing passwords via WhatsApp or SMS</li>
+        <li>Using sequential patterns like "qwerty" or "abcd1234"</li>
+      </ul>
+
+      <h2>Tools to Help You Stay Secure</h2>
+      <ul>
+        <li><a href="/tools/password-generator">Password Generator</a> — Create random, secure passwords instantly</li>
+        <li><a href="/tools/password-strength-checker">Password Strength Checker</a> — Test how strong your existing passwords are</li>
+        <li><a href="/tools/aadhaar-validator">Aadhaar Validator</a> — Check if an Aadhaar number format is valid before sharing</li>
+        <li><a href="/tools/pan-card-validator">PAN Card Validator</a> — Verify PAN format to avoid scams</li>
+      </ul>
+
+      <h2>Frequently Asked Questions</h2>
+      <p><strong>Q: Should I use a password manager?</strong></p>
+      <p>Yes, absolutely. A password manager like Bitwarden (free) or 1Password stores all your passwords in an encrypted vault. You only need to remember one master password. This lets you have unique, complex passwords for every site without memorising them all.</p>
+      <p><strong>Q: Is biometric login (fingerprint/face) safe enough?</strong></p>
+      <p>Biometrics are convenient but should be used alongside a strong password, not instead of one. Always set a strong backup password. Biometrics can sometimes be bypassed, and they cannot be changed if compromised (unlike passwords).</p>
+      <p><strong>Q: How often should I change my passwords?</strong></p>
+      <p>Change passwords immediately if you suspect a breach. For banking, every 90 days is recommended. For other accounts, change annually or when prompted. The most important thing is using unique, strong passwords rather than changing weak ones frequently.</p>
+    `,
+  },
+  {
+    slug: "image-compress-resize-guide-government-forms-india",
+    title: "How to Compress & Resize Images for Indian Government Forms (SSC, UPSC, Railway)",
+    description: "Step-by-step guide to compress photos to 20KB, 50KB, 100KB for SSC, UPSC, Railway, and other Indian government exam forms. Free online tools with exact size presets.",
+    date: "2026-03-27",
+    category: "Education",
+    readTime: "7 min read",
+    keywords: ["compress image to 20kb", "resize photo for government form", "ssc photo size", "upsc photo upload", "compress image online free", "passport photo size india", "railway form photo size"],
+    content: `
+      <p>Every year, crores of Indian students face the same frustrating problem: their photo gets rejected while filling government exam forms because it does not meet the exact size requirements. Whether you are applying for SSC CGL, UPSC Civil Services, Railway RRB, bank exams, or state government jobs, each form has specific photo dimensions, file size limits, and format requirements. This guide covers all major exam photo requirements and shows you how to get them right every time.</p>
+
+      <h2>Common Photo Requirements for Indian Government Forms</h2>
+      <p>Here are the exact specifications required by major examination bodies:</p>
+
+      <h3>SSC (Staff Selection Commission)</h3>
+      <ul>
+        <li><strong>Photo:</strong> 20-50 KB, JPG/JPEG format, 100x120 pixels</li>
+        <li><strong>Signature:</strong> 10-20 KB, JPG/JPEG format, 140x60 pixels</li>
+        <li>Background: White or light-coloured</li>
+      </ul>
+
+      <h3>UPSC (Civil Services, NDA, CDS)</h3>
+      <ul>
+        <li><strong>Photo:</strong> 20-300 KB, JPG format, minimum 2x2 inches</li>
+        <li><strong>Signature:</strong> 20-300 KB, JPG format</li>
+        <li>Photo must be recent, with clear face visibility</li>
+      </ul>
+
+      <h3>Railway RRB (NTPC, Group D, ALP)</h3>
+      <ul>
+        <li><strong>Photo:</strong> 20-50 KB, JPG format, 3.5x4.5 cm</li>
+        <li><strong>Signature:</strong> 10-20 KB, JPG format, 3.5x1.5 cm</li>
+        <li>White background mandatory</li>
+      </ul>
+
+      <h3>Bank Exams (IBPS, SBI, RBI)</h3>
+      <ul>
+        <li><strong>Photo:</strong> 20-50 KB, JPG format, 200x230 pixels</li>
+        <li><strong>Signature:</strong> 10-20 KB, JPG format, 140x60 pixels</li>
+        <li><strong>Left thumb impression:</strong> 20-50 KB, 200x230 pixels</li>
+      </ul>
+
+      <h3>Aadhaar / Passport</h3>
+      <ul>
+        <li>35x45 mm, colour photo, white background</li>
+        <li>Use our <a href="/tools/passport-photo-maker">Passport Photo Maker</a> to get the exact dimensions</li>
+      </ul>
+
+      <h2>Step-by-Step: How to Compress Your Photo</h2>
+      <h3>Method 1: Use SabTools Image Compressor (Recommended)</h3>
+      <ol>
+        <li>Open our <a href="/tools/image-compressor">Image Compressor</a> tool</li>
+        <li>Upload your photo (JPG, PNG, or WebP)</li>
+        <li>Select the target file size (20KB, 50KB, 100KB, or custom)</li>
+        <li>Click Compress — your photo is processed instantly in your browser</li>
+        <li>Download the compressed photo. It is ready for upload!</li>
+      </ol>
+      <p><strong>Privacy note:</strong> Your photo is processed entirely on your device. It is never uploaded to any server.</p>
+
+      <h3>Method 2: Resize First, Then Compress</h3>
+      <p>If your photo is very large (from a DSLR or modern phone), resize it first for better results:</p>
+      <ol>
+        <li>Open our <a href="/tools/image-resizer">Image Resizer</a></li>
+        <li>Set the exact pixel dimensions required by your exam (e.g., 200x230 for IBPS)</li>
+        <li>Download the resized image</li>
+        <li>Then open the <a href="/tools/image-compressor">Image Compressor</a> and compress to the required file size</li>
+      </ol>
+
+      <h2>How to Get Perfect Passport-Size Photos at Home</h2>
+      <p>You do not need to visit a photo studio. Use our <a href="/tools/passport-photo-maker">Passport Photo Maker</a> tool:</p>
+      <ol>
+        <li>Take a photo against a white wall using your phone camera</li>
+        <li>Upload to the Passport Photo Maker</li>
+        <li>The tool automatically crops to the correct passport size (35x45mm)</li>
+        <li>Remove or blur the background using our <a href="/tools/background-remover">Background Remover</a></li>
+        <li>Download and print at home or a nearby print shop</li>
+      </ol>
+
+      <h2>Converting Between Image Formats</h2>
+      <p>Many government forms only accept JPG/JPEG format. If your photo is in PNG, WebP, or HEIC format (common on iPhones), you need to convert it first. Use our <a href="/tools/image-format-converter">Image Format Converter</a> to instantly convert between formats — no quality loss, no watermarks.</p>
+
+      <h2>Signature Scanning Tips</h2>
+      <p>Getting the signature right is equally important:</p>
+      <ul>
+        <li>Sign on plain white paper with a black or dark blue pen</li>
+        <li>Take a clear photo in good lighting, directly from above</li>
+        <li>Crop the image to show only the signature with minimal white space</li>
+        <li>Use the <a href="/tools/image-compressor">Image Compressor</a> to reduce to 10-20 KB</li>
+        <li>If needed, use <a href="/tools/image-cropper">Image Cropper</a> for precise cropping</li>
+      </ul>
+
+      <h2>Troubleshooting Common Upload Errors</h2>
+      <ul>
+        <li><strong>"File size exceeds limit":</strong> Compress further using our tool. Reduce quality slider gradually until under the limit.</li>
+        <li><strong>"Invalid dimensions":</strong> Use the Image Resizer to set exact pixel width and height.</li>
+        <li><strong>"Invalid format":</strong> Convert to JPG using our format converter.</li>
+        <li><strong>"Photo is blurry":</strong> Take a new photo in bright natural light. Hold the phone steady. Ensure face is in focus.</li>
+        <li><strong>"Background not white":</strong> Use our <a href="/tools/background-remover">Background Remover</a> and replace with white.</li>
+      </ul>
+
+      <h2>All SabTools Image Tools</h2>
+      <ul>
+        <li><a href="/tools/image-compressor">Image Compressor</a> — Reduce file size to exact KB target</li>
+        <li><a href="/tools/image-resizer">Image Resizer</a> — Set exact pixel dimensions</li>
+        <li><a href="/tools/image-cropper">Image Cropper</a> — Crop to exact aspect ratio</li>
+        <li><a href="/tools/image-format-converter">Image Format Converter</a> — Convert JPG, PNG, WebP, GIF</li>
+        <li><a href="/tools/background-remover">Background Remover</a> — AI-powered background removal</li>
+        <li><a href="/tools/passport-photo-maker">Passport Photo Maker</a> — Perfect passport/visa photos</li>
+        <li><a href="/tools/image-watermark">Image Watermark</a> — Add text or logo watermarks</li>
+        <li><a href="/tools/blur-background">Blur Background</a> — Professional background blur</li>
+        <li><a href="/tools/image-to-text">Image to Text (OCR)</a> — Extract text from images</li>
+      </ul>
+
+      <h2>Frequently Asked Questions</h2>
+      <p><strong>Q: Will compressing my photo reduce its quality?</strong></p>
+      <p>Slightly, but for exam forms it is barely noticeable. Government forms display photos at very small sizes (usually thumbnail size), so moderate compression does not affect how your photo appears on the admit card or form. Our compressor uses smart algorithms that preserve face clarity while reducing file size.</p>
+      <p><strong>Q: Can I use my Aadhaar card photo for exam forms?</strong></p>
+      <p>It is not recommended. Aadhaar photos are often low resolution and may not match current appearance. Most exam forms require a recent photograph (taken within the last 6 months) with clear visibility of facial features.</p>
+      <p><strong>Q: My phone takes photos in HEIC format. How do I convert to JPG?</strong></p>
+      <p>iPhones often save photos in HEIC format. Upload the photo to our <a href="/tools/image-format-converter">Image Format Converter</a>, select JPG as the output format, and download. The conversion happens instantly in your browser.</p>
+      <p><strong>Q: What if my photo is already under the size limit but dimensions are wrong?</strong></p>
+      <p>Use the <a href="/tools/image-resizer">Image Resizer</a> first to set the correct pixel dimensions. If resizing increases the file size above the limit, then compress it afterwards. Always resize first, then compress.</p>
+    `,
+  },
 ];
 
 export function getAllPosts(): BlogPost[] {
