@@ -7,12 +7,15 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "index-now": "node scripts/index-now.js"
+    "index-now": "node scripts/index-now.js",
+    "google-index": "node scripts/google-indexing.js",
+    "google-index-50": "node scripts/google-indexing.js --top=50"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.2.2",
     "@types/node": "^25.5.0",
     "@types/react": "^19.2.14",
+    "google-auth-library": "^10.6.2",
     "next": "^16.2.1",
     "postcss": "^8.5.8",
     "react": "^19.2.4",
