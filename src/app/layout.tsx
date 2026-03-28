@@ -118,6 +118,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="SabTools" />
         <meta name="google-adsense-account" content="ca-pub-XXXXXXXXXXXXXXXX" />
+        <meta name="p:domain_verify" content="2979c659d48751bc3545b2d2d9df6662" />
       </head>
       <body className="min-h-screen flex flex-col">
         {/* Google Tag Manager (noscript) */}
