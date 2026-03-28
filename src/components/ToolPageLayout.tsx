@@ -8,6 +8,9 @@ import ToolFaq from "@/components/ToolFaq";
 import TrackToolVisit from "@/components/TrackToolVisit";
 import FavoriteButton from "@/components/FavoriteButton";
 import DownloadPDF from "@/components/DownloadPDF";
+import ToolRating from "@/components/ToolRating";
+import ToolUsageCounter from "@/components/ToolUsageCounter";
+import ReviewedBy from "@/components/ReviewedBy";
 import type { Tool } from "@/lib/tools";
 import { categories } from "@/lib/tools";
 import { getToolContent } from "@/lib/tool-content";
@@ -53,10 +56,27 @@ export default function ToolPageLayout({ tool, children }: ToolPageLayoutProps) 
     ],
   };
 
+  // HowTo schema — enables rich step-by-step snippets in Google search
+  const howToLd = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: `How to Use ${tool.name}`,
+    description: `Step-by-step guide to using ${tool.name} on SabTools.in`,
+    step: content.howToSteps.map((step, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      name: `Step ${i + 1}`,
+      text: step,
+    })),
+    tool: { "@type": "HowToTool", name: "Web Browser" },
+    totalTime: "PT1M",
+  };
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToLd) }} />
       <TrackToolVisit slug={tool.slug} />
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-8">
         <Breadcrumb
@@ -76,6 +96,9 @@ export default function ToolPageLayout({ tool, children }: ToolPageLayoutProps) 
               <div>
                 <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900">{tool.name}</h1>
                 <p className="text-gray-500">{tool.description}</p>
+                <div className="mt-1">
+                  <ToolUsageCounter slug={tool.slug} />
+                </div>
               </div>
             </div>
             <div className="flex items-center gap-2">
@@ -132,6 +155,14 @@ export default function ToolPageLayout({ tool, children }: ToolPageLayoutProps) 
 
         {/* FAQ Section with Schema — unique per category */}
         <ToolFaq toolName={tool.name} description={tool.description} customFaqs={content.faqs} />
+
+        {/* Expert Review — E-E-A-T signal for Google */}
+        <ReviewedBy category={tool.category} toolName={tool.name} slug={tool.slug} />
+
+        {/* User Rating — engagement signal */}
+        <div className="mt-8">
+          <ToolRating slug={tool.slug} toolName={tool.name} />
+        </div>
 
         {/* Related Tools */}
         <RelatedTools currentSlug={tool.slug} category={tool.category} />
