@@ -6,6 +6,10 @@ import GoogleAnalytics from "@/components/GoogleAnalytics";
 import InstallPrompt from "@/components/InstallPrompt";
 import SuggestTool from "@/components/SuggestTool";
 import AskSabTools from "@/components/AskSabTools";
+import RecentCalculations from "@/components/RecentCalculations";
+import KeyboardShortcuts from "@/components/KeyboardShortcuts";
+import BackToTop from "@/components/BackToTop";
+import ReadingProgress from "@/components/ReadingProgress";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -17,11 +21,11 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL("https://sabtools.in"),
   title: {
-    default: "SabTools.in - 280+ Free Online Tools | Calculators, Converters, AI Tools & More",
+    default: "SabTools.in - 460+ Free Online Tools | Calculators, Converters, AI Tools & More",
     template: "%s | SabTools.in",
   },
   description:
-    "India's #1 free online tools website. 280+ tools including EMI Calculator, SIP Calculator, GST Calculator, AI Writing Tools, PDF Tools, Image Tools & more. 100% free, no signup required. Made for India.",
+    "India's #1 free online tools website. 460+ tools including EMI Calculator, SIP Calculator, GST Calculator, AI Writing Tools, PDF Tools, Image Tools & more. 100% free, no signup required. Made for India.",
   keywords: [
     "free online tools",
     "free online calculator",
@@ -58,13 +62,13 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: "https://sabtools.in",
     siteName: "SabTools.in",
-    title: "SabTools.in - 280+ Free Online Tools for India",
+    title: "SabTools.in - 460+ Free Online Tools for India",
     description: "India's #1 free online tools website. Calculators, Converters, AI Tools, PDF Tools, Developer Tools & more. 100% free.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SabTools.in - 280+ Free Online Tools",
-    description: "India's #1 free online tools website. 280+ tools — 100% free, no signup.",
+    title: "SabTools.in - 460+ Free Online Tools",
+    description: "India's #1 free online tools website. 460+ tools — 100% free, no signup.",
   },
   robots: {
     index: true,
@@ -132,6 +136,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <InstallPrompt />
         <SuggestTool />
         <AskSabTools />
+        <RecentCalculations />
+        <KeyboardShortcuts />
+        <BackToTop />
+        <ReadingProgress />
       </body>
     </html>
   );

@@ -4,6 +4,7 @@ import ToolCard from "@/components/ToolCard";
 import AdBanner from "@/components/AdBanner";
 import RecentlyUsed from "@/components/RecentlyUsed";
 import FavoriteTools from "@/components/FavoriteTools";
+import ToolOfTheDay from "@/components/ToolOfTheDay";
 import { categories, tools } from "@/lib/tools";
 
 export default function HomePage() {
@@ -86,6 +87,11 @@ export default function HomePage() {
       {/* Ad Banner */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 mt-8">
         <AdBanner format="horizontal" />
+      </div>
+
+      {/* Tool of the Day */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 mt-8">
+        <ToolOfTheDay />
       </div>
 
       {/* Recently Used Tools */}
