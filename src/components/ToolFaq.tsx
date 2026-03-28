@@ -5,6 +5,9 @@ import { useState } from "react";
 interface ToolFaqProps {
   toolName: string;
   description: string;
+  category?: string;
+  keywords?: string[];
+  customFaqs?: { question: string; answer: string }[];
 }
 
 interface FaqItem {
@@ -12,33 +15,31 @@ interface FaqItem {
   answer: string;
 }
 
-export default function ToolFaq({ toolName, description }: ToolFaqProps) {
-  const faqs: FaqItem[] = [
-    {
-      question: `What is ${toolName}?`,
-      answer: `${toolName} is a free online tool on SabTools.in. ${description}. It runs entirely in your browser with no downloads or installations needed.`,
-    },
-    {
-      question: `Is ${toolName} free to use?`,
-      answer: `Yes, ${toolName} is completely free to use. No signup, no registration, and no hidden charges. You can use it unlimited times without any restrictions.`,
-    },
-    {
-      question: `How to use ${toolName}?`,
-      answer: `Simply enter your values in the input fields provided and get instant results. The tool processes everything in your browser in real-time. No waiting, no server delays.`,
-    },
-    {
-      question: `Is my data safe with ${toolName}?`,
-      answer: `Absolutely. ${toolName} processes all data locally in your browser. Your information never leaves your device and is not stored on any server. Your privacy is fully protected.`,
-    },
-    {
-      question: `Can I use ${toolName} on my mobile phone?`,
-      answer: `Yes, ${toolName} is fully responsive and works perfectly on all devices including mobile phones, tablets, and desktop computers. No app download is required.`,
-    },
-    {
-      question: `Do I need to create an account to use ${toolName}?`,
-      answer: `No account or signup is needed. Just open ${toolName} and start using it immediately. SabTools.in provides 280+ tools completely free without any registration.`,
-    },
-  ];
+export default function ToolFaq({ toolName, description, customFaqs }: ToolFaqProps) {
+  const faqs: FaqItem[] = customFaqs && customFaqs.length > 0
+    ? customFaqs
+    : [
+        {
+          question: `What is ${toolName}?`,
+          answer: `${toolName} is a free online tool on SabTools.in. ${description}. It runs entirely in your browser with no downloads or installations needed.`,
+        },
+        {
+          question: `Is ${toolName} free to use?`,
+          answer: `Yes, ${toolName} is completely free to use. No signup, no registration, and no hidden charges. You can use it unlimited times without any restrictions.`,
+        },
+        {
+          question: `How to use ${toolName}?`,
+          answer: `Simply enter your values in the input fields provided and get instant results. The tool processes everything in your browser in real-time.`,
+        },
+        {
+          question: `Is my data safe with ${toolName}?`,
+          answer: `Absolutely. ${toolName} processes all data locally in your browser. Your information never leaves your device and is not stored on any server.`,
+        },
+        {
+          question: `Can I use ${toolName} on my mobile phone?`,
+          answer: `Yes, ${toolName} is fully responsive and works perfectly on all devices including mobile phones, tablets, and desktop computers.`,
+        },
+      ];
 
   return (
     <section className="mt-12">

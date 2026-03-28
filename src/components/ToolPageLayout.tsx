@@ -10,6 +10,7 @@ import FavoriteButton from "@/components/FavoriteButton";
 import DownloadPDF from "@/components/DownloadPDF";
 import type { Tool } from "@/lib/tools";
 import { categories } from "@/lib/tools";
+import { getToolContent } from "@/lib/tool-content";
 
 interface ToolPageLayoutProps {
   tool: Tool;
@@ -18,6 +19,7 @@ interface ToolPageLayoutProps {
 
 export default function ToolPageLayout({ tool, children }: ToolPageLayoutProps) {
   const cat = categories.find((c) => c.slug === tool.category);
+  const content = getToolContent(tool.name, tool.description, tool.category, tool.keywords);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -98,32 +100,38 @@ export default function ToolPageLayout({ tool, children }: ToolPageLayoutProps) 
 
         <AdBanner format="horizontal" className="mt-8" />
 
-        {/* SEO Content */}
+        {/* SEO Content — unique per category to avoid thin/duplicate content */}
         <div className="mt-12 prose prose-gray max-w-none">
           <h2 className="text-xl font-bold text-gray-800">About {tool.name}</h2>
-          <p className="text-gray-600">
-            {tool.name} is a free online tool available on SabTools.in. {tool.description}.
-            This tool is completely free to use, requires no signup, and works instantly in your browser.
-            Your data stays private as all calculations happen on your device.
-          </p>
-          <h3 className="text-lg font-semibold text-gray-800 mt-6">How to use {tool.name}?</h3>
-          <ol className="text-gray-600 list-decimal list-inside space-y-1">
-            <li>Enter the required values in the input fields above</li>
-            <li>The results will be calculated automatically in real-time</li>
-            <li>You can copy or share the results as needed</li>
+          <p className="text-gray-600">{content.about}</p>
+
+          <h3 className="text-lg font-semibold text-gray-800 mt-6">How to Use {tool.name} — Step by Step</h3>
+          <ol className="text-gray-600 list-decimal list-inside space-y-2">
+            {content.howToSteps.map((step, i) => (
+              <li key={i}>{step}</li>
+            ))}
           </ol>
-          <h3 className="text-lg font-semibold text-gray-800 mt-6">Why use SabTools.in?</h3>
-          <ul className="text-gray-600 list-disc list-inside space-y-1">
-            <li>100% free — no signup, no limits, no hidden fees</li>
-            <li>Lightning fast — runs instantly in your browser</li>
-            <li>Privacy first — your data never leaves your device</li>
-            <li>Mobile friendly — works on any phone, tablet or computer</li>
-            <li>Made for India — Indian number formats, GST, EMI & more</li>
+
+          <h3 className="text-lg font-semibold text-gray-800 mt-6">Why Choose {tool.name} on SabTools.in?</h3>
+          <ul className="text-gray-600 list-disc list-inside space-y-2">
+            {content.benefits.map((benefit, i) => (
+              <li key={i}>{benefit}</li>
+            ))}
           </ul>
+
+          {tool.keywords.length > 0 && (
+            <>
+              <h3 className="text-lg font-semibold text-gray-800 mt-6">Related Topics</h3>
+              <p className="text-gray-600">
+                {tool.name} is commonly used for: {tool.keywords.join(", ")}.
+                Explore more {cat?.name || "tools"} on SabTools.in for all your calculation needs.
+              </p>
+            </>
+          )}
         </div>
 
-        {/* FAQ Section with Schema */}
-        <ToolFaq toolName={tool.name} description={tool.description} />
+        {/* FAQ Section with Schema — unique per category */}
+        <ToolFaq toolName={tool.name} description={tool.description} customFaqs={content.faqs} />
 
         {/* Related Tools */}
         <RelatedTools currentSlug={tool.slug} category={tool.category} />

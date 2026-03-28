@@ -1,15 +1,16 @@
 User-agent: *
 Allow: /
-Disallow: /_next/static/
 Disallow: /_next/image/
+Disallow: /embed/
 
 User-agent: Googlebot
+Allow: /_next/static/
 Allow: /
-Crawl-delay: 1
+Disallow: /embed/
 
 User-agent: Bingbot
 Allow: /
-Crawl-delay: 2
+Disallow: /embed/
 
 User-agent: AdsBot-Google
 Allow: /
